@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		561B30092A4880ED00494669 /* WaterfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B30082A4880ED00494669 /* WaterfulApp.swift */; };
+		561B300B2A4880ED00494669 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B300A2A4880ED00494669 /* ContentView.swift */; };
+		561B300D2A4880EE00494669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300C2A4880EE00494669 /* Assets.xcassets */; };
+		561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300F2A4880EE00494669 /* Preview Assets.xcassets */; };
+		561B30182A48827800494669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 561B30172A48827800494669 /* GoogleService-Info.plist */; };
+		56E14EDB2A48834E00967797 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDA2A48834E00967797 /* FirebaseAnalytics */; };
+		56E14EDD2A48834E00967797 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDC2A48834E00967797 /* FirebaseAnalyticsSwift */; };
+		56E14EE02A4884ED00967797 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDF2A4884ED00967797 /* FirebaseAuth */; };
+		56E14EE32A48858400967797 /* AuthSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EE22A48858400967797 /* AuthSignInView.swift */; };
+		56E14EE72A488A8F00967797 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EE62A488A8F00967797 /* AuthenticationManager.swift */; };
+		56E14EEB2A48915D00967797 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EEA2A48915D00967797 /* RootView.swift */; };
+		56E14EED2A4894C100967797 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EEC2A4894C100967797 /* SettingsView.swift */; };
+		56E14EEF2A48A50B00967797 /* PreAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EEE2A48A50B00967797 /* PreAuthView.swift */; };
+		56E14EF12A48A8BC00967797 /* AuthSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF02A48A8BC00967797 /* AuthSignUpView.swift */; };
+		56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF22A48B7F700967797 /* PasswordForgetView.swift */; };
+		56E14EF52A48B88E00967797 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF42A48B88E00967797 /* HomeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		561B30052A4880ED00494669 /* Waterful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waterful.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		561B30082A4880ED00494669 /* WaterfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfulApp.swift; sourceTree = "<group>"; };
+		561B300A2A4880ED00494669 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		561B300C2A4880EE00494669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		561B300F2A4880EE00494669 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		561B30172A48827800494669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		56E14EE22A48858400967797 /* AuthSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSignInView.swift; sourceTree = "<group>"; };
+		56E14EE62A488A8F00967797 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		56E14EEA2A48915D00967797 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		56E14EEC2A4894C100967797 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		56E14EEE2A48A50B00967797 /* PreAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthView.swift; sourceTree = "<group>"; };
+		56E14EF02A48A8BC00967797 /* AuthSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSignUpView.swift; sourceTree = "<group>"; };
+		56E14EF22A48B7F700967797 /* PasswordForgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetView.swift; sourceTree = "<group>"; };
+		56E14EF42A48B88E00967797 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		561B30022A4880ED00494669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56E14EDD2A48834E00967797 /* FirebaseAnalyticsSwift in Frameworks */,
+				56E14EE02A4884ED00967797 /* FirebaseAuth in Frameworks */,
+				56E14EDB2A48834E00967797 /* FirebaseAnalytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		561B2FFC2A4880ED00494669 = {
+			isa = PBXGroup;
+			children = (
+				561B30072A4880ED00494669 /* Waterful */,
+				561B30062A4880ED00494669 /* Products */,
+				56E14EDE2A4884ED00967797 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		561B30062A4880ED00494669 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				561B30052A4880ED00494669 /* Waterful.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		561B30072A4880ED00494669 /* Waterful */ = {
+			isa = PBXGroup;
+			children = (
+				561B30082A4880ED00494669 /* WaterfulApp.swift */,
+				561B300A2A4880ED00494669 /* ContentView.swift */,
+				56E14EF42A48B88E00967797 /* HomeView.swift */,
+				56E14EE12A48856200967797 /* Authentication */,
+				561B30172A48827800494669 /* GoogleService-Info.plist */,
+				561B300C2A4880EE00494669 /* Assets.xcassets */,
+				561B300E2A4880EE00494669 /* Preview Content */,
+			);
+			path = Waterful;
+			sourceTree = "<group>";
+		};
+		561B300E2A4880EE00494669 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				561B300F2A4880EE00494669 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		56E14EDE2A4884ED00967797 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56E14EE12A48856200967797 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				56E14EE22A48858400967797 /* AuthSignInView.swift */,
+				56E14EEC2A4894C100967797 /* SettingsView.swift */,
+				56E14EE62A488A8F00967797 /* AuthenticationManager.swift */,
+				56E14EEA2A48915D00967797 /* RootView.swift */,
+				56E14EEE2A48A50B00967797 /* PreAuthView.swift */,
+				56E14EF02A48A8BC00967797 /* AuthSignUpView.swift */,
+				56E14EF22A48B7F700967797 /* PasswordForgetView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		561B30042A4880ED00494669 /* Waterful */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 561B30132A4880EE00494669 /* Build configuration list for PBXNativeTarget "Waterful" */;
+			buildPhases = (
+				561B30012A4880ED00494669 /* Sources */,
+				561B30022A4880ED00494669 /* Frameworks */,
+				561B30032A4880ED00494669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Waterful;
+			packageProductDependencies = (
+				56E14EDA2A48834E00967797 /* FirebaseAnalytics */,
+				56E14EDC2A48834E00967797 /* FirebaseAnalyticsSwift */,
+				56E14EDF2A4884ED00967797 /* FirebaseAuth */,
+			);
+			productName = Waterful;
+			productReference = 561B30052A4880ED00494669 /* Waterful.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		561B2FFD2A4880ED00494669 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					561B30042A4880ED00494669 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 561B30002A4880ED00494669 /* Build configuration list for PBXProject "Waterful" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 561B2FFC2A4880ED00494669;
+			packageReferences = (
+				56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = 561B30062A4880ED00494669 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				561B30042A4880ED00494669 /* Waterful */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		561B30032A4880ED00494669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */,
+				561B300D2A4880EE00494669 /* Assets.xcassets in Resources */,
+				561B30182A48827800494669 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		561B30012A4880ED00494669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56E14EEF2A48A50B00967797 /* PreAuthView.swift in Sources */,
+				56E14EED2A4894C100967797 /* SettingsView.swift in Sources */,
+				561B300B2A4880ED00494669 /* ContentView.swift in Sources */,
+				561B30092A4880ED00494669 /* WaterfulApp.swift in Sources */,
+				56E14EEB2A48915D00967797 /* RootView.swift in Sources */,
+				56E14EF52A48B88E00967797 /* HomeView.swift in Sources */,
+				56E14EE32A48858400967797 /* AuthSignInView.swift in Sources */,
+				56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */,
+				56E14EE72A488A8F00967797 /* AuthenticationManager.swift in Sources */,
+				56E14EF12A48A8BC00967797 /* AuthSignUpView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		561B30112A4880EE00494669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		561B30122A4880EE00494669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		561B30142A4880EE00494669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Waterful/Waterful.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Waterful/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WT4C7S8W4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duncanconduit.waterful;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = WaterfulApp;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		561B30152A4880EE00494669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Waterful/Waterful.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Waterful/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WT4C7S8W4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duncanconduit.waterful;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = WaterfulApp;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		561B30002A4880ED00494669 /* Build configuration list for PBXProject "Waterful" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				561B30112A4880EE00494669 /* Debug */,
+				561B30122A4880EE00494669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		561B30132A4880EE00494669 /* Build configuration list for PBXNativeTarget "Waterful" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				561B30142A4880EE00494669 /* Debug */,
+				561B30152A4880EE00494669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 10.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		56E14EDA2A48834E00967797 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		56E14EDC2A48834E00967797 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		56E14EDF2A4884ED00967797 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 561B2FFD2A4880ED00494669 /* Project object */;
+}
