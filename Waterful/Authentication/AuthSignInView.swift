@@ -6,7 +6,24 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
+struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
+    
+    let type: ASAuthorizationAppleIDButton.ButtonType
+    let style: ASAuthorizationAppleIDButton.Style
+    
+    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
+        ASAuthorizationAppleIDButton(authorizationButtonType: type, authorizationButtonStyle: style)
+    }
+    
+    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
+        
+    }
+}
+
+
+@MainActor
 final class SignInEmailViewModel: ObservableObject {
     
     @Published var email = ""
@@ -31,17 +48,13 @@ struct AuthSignInView: View {
     var body: some View {
         VStack {
             
-            Button {
-                
-            } label: {
-                Text("Sign In with Apple")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
+
+        SignInWithAppleButtonViewRepresentable(type: .signIn, style: .black)
+        .allowsHitTesting(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
+        .frame(height: 55)
+        .cornerRadius(10)
+        
+    
             
             
             Button {

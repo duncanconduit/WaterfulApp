@@ -31,21 +31,12 @@ struct AuthSignUpView: View {
     var body: some View {
         VStack {
             
-            Button {
-                
-            } label: {
-                Text("Sign Up with Apple")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(height: 55)
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
             
+            SignInWithAppleButtonViewRepresentable(type: .signUp, style: .black)
+                .frame(height: 55)
+                .cornerRadius(10)
             
             Button {
-                
             } label: {
                 Text("Sign Up with Google")
                     .font(.headline)

@@ -13,7 +13,7 @@ struct PreAuthView: View {
     
     var body: some View {
         VStack {
-            Image("Placeholder")
+            Image("Logo")
                 .resizable(resizingMode: .stretch)
                 .frame(
                     width: 80,
@@ -33,13 +33,23 @@ struct PreAuthView: View {
                 height: 32,
                 alignment: .center
                 )
+            
+            
+            SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
+            .allowsHitTesting(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
+            .frame(height: 55)
+            .cornerRadius(10)
 
             NavigationLink {
                 AuthSignUpView(showSignInView: $showSignInView)
-
+            
             } label: {
-                Text("Get Started")
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                Text("Continue With Email")
+                    .font(.headline)
+                    .frame(height: 45)
+                    .frame(maxWidth: .infinity)
+                    .cornerRadius(10)
+            
                 
                     }
             .buttonStyle(.borderedProminent)
@@ -52,9 +62,15 @@ struct PreAuthView: View {
                     .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     }
             }
+        .padding()
             .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+)
+                .ignoresSafeArea()
 
     }
+    
    
 }
 

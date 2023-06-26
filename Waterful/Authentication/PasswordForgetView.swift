@@ -7,9 +7,29 @@
 
 import SwiftUI
 
+var email = ""
+
 struct PasswordForgetView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TextField("Email....", text: .constant(email))
+                .padding()
+                .background(Color.gray.opacity(0.4))
+                .cornerRadius(10)
+            
+            Button {
+                
+            } label: {
+                Text("Send Link")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+        }
+        .padding()
     }
 }
 
