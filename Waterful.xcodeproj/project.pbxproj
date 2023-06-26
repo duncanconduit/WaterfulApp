@@ -12,6 +12,9 @@
 		561B300D2A4880EE00494669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300C2A4880EE00494669 /* Assets.xcassets */; };
 		561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300F2A4880EE00494669 /* Preview Assets.xcassets */; };
 		561B30182A48827800494669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 561B30172A48827800494669 /* GoogleService-Info.plist */; };
+		566E6D7F2A498AB200ED60DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 566E6D7E2A498AB200ED60DA /* LaunchScreen.storyboard */; };
+		566E6D812A498B1300ED60DA /* UpFlowEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E6D802A498B1300ED60DA /* UpFlowEmailView.swift */; };
+		566E6D832A49E89900ED60DA /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E6D822A49E89900ED60DA /* SignInEmailView.swift */; };
 		56E14EDB2A48834E00967797 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDA2A48834E00967797 /* FirebaseAnalytics */; };
 		56E14EDD2A48834E00967797 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDC2A48834E00967797 /* FirebaseAnalyticsSwift */; };
 		56E14EE02A4884ED00967797 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDF2A4884ED00967797 /* FirebaseAuth */; };
@@ -32,11 +35,14 @@
 		561B300C2A4880EE00494669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		561B300F2A4880EE00494669 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		561B30172A48827800494669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		566E6D7E2A498AB200ED60DA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		566E6D802A498B1300ED60DA /* UpFlowEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpFlowEmailView.swift; sourceTree = "<group>"; };
+		566E6D822A49E89900ED60DA /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
 		56E14EE22A48858400967797 /* AuthSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSignInView.swift; sourceTree = "<group>"; };
 		56E14EE62A488A8F00967797 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		56E14EEA2A48915D00967797 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		56E14EEC2A4894C100967797 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		56E14EEE2A48A50B00967797 /* PreAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthView.swift; sourceTree = "<group>"; };
+		56E14EEE2A48A50B00967797 /* PreAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		56E14EF02A48A8BC00967797 /* AuthSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSignUpView.swift; sourceTree = "<group>"; };
 		56E14EF22A48B7F700967797 /* PasswordForgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetView.swift; sourceTree = "<group>"; };
 		56E14EF42A48B88E00967797 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -78,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				56E14EF82A48DE2C00967797 /* Waterful.entitlements */,
+				566E6D7E2A498AB200ED60DA /* LaunchScreen.storyboard */,
 				561B30082A4880ED00494669 /* WaterfulApp.swift */,
 				561B300A2A4880ED00494669 /* ContentView.swift */,
 				56E14EF42A48B88E00967797 /* HomeView.swift */,
@@ -97,6 +104,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		566E6D7D2A498A8B00ED60DA /* SignUpFlow */ = {
+			isa = PBXGroup;
+			children = (
+				566E6D802A498B1300ED60DA /* UpFlowEmailView.swift */,
+			);
+			path = SignUpFlow;
+			sourceTree = "<group>";
+		};
 		56E14EDE2A4884ED00967797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +122,7 @@
 		56E14EE12A48856200967797 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				566E6D7D2A498A8B00ED60DA /* SignUpFlow */,
 				56E14EE22A48858400967797 /* AuthSignInView.swift */,
 				56E14EEC2A4894C100967797 /* SettingsView.swift */,
 				56E14EE62A488A8F00967797 /* AuthenticationManager.swift */,
@@ -114,6 +130,7 @@
 				56E14EEE2A48A50B00967797 /* PreAuthView.swift */,
 				56E14EF02A48A8BC00967797 /* AuthSignUpView.swift */,
 				56E14EF22A48B7F700967797 /* PasswordForgetView.swift */,
+				566E6D822A49E89900ED60DA /* SignInEmailView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -185,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */,
+				566E6D7F2A498AB200ED60DA /* LaunchScreen.storyboard in Resources */,
 				561B300D2A4880EE00494669 /* Assets.xcassets in Resources */,
 				561B30182A48827800494669 /* GoogleService-Info.plist in Resources */,
 			);
@@ -204,6 +222,8 @@
 				56E14EEB2A48915D00967797 /* RootView.swift in Sources */,
 				56E14EF52A48B88E00967797 /* HomeView.swift in Sources */,
 				56E14EE32A48858400967797 /* AuthSignInView.swift in Sources */,
+				566E6D832A49E89900ED60DA /* SignInEmailView.swift in Sources */,
+				566E6D812A498B1300ED60DA /* UpFlowEmailView.swift in Sources */,
 				56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */,
 				56E14EE72A488A8F00967797 /* AuthenticationManager.swift in Sources */,
 				56E14EF12A48A8BC00967797 /* AuthSignUpView.swift in Sources */,

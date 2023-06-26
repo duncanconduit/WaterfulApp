@@ -93,7 +93,6 @@ struct AuthSignInView: View {
                     } catch {
                         print(error)
                     }
-                
                 }
             } label: {
                 Text("Sign In")

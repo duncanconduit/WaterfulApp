@@ -10,63 +10,112 @@ import SwiftUI
 struct PreAuthView: View {
     
     @Binding var showSignInView: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
-            Image("Logo")
-                .resizable(resizingMode: .stretch)
-                .frame(
-                    width: 80,
-                    height: 80,
-                    alignment: .center
-                    )
-
-            Text("Welcome to Waterful")
-                .font(.system(.largeTitle, design: .default))
-                .bold()
-
-            Text("Build Healthy Habits")
-                .foregroundColor(Color(uiColor: .secondaryLabel))
-
+            
             Spacer()
-            .frame(
-                height: 32,
-                alignment: .center
-                )
             
-            
-            SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
-            .allowsHitTesting(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
-            .frame(height: 55)
-            .cornerRadius(10)
-
-            NavigationLink {
-                AuthSignUpView(showSignInView: $showSignInView)
-            
-            } label: {
-                Text("Continue With Email")
-                    .font(.headline)
-                    .frame(height: 45)
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(10)
-            
+            VStack {
+                Image("dropletPreAuth")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(
+                        width: 80,
+                        height: 80,
+                        alignment: .center
+                    )
                 
+                Text("Welcome to Waterful")
+                    .font(.system(.largeTitle, design: .default))
+                    .bold()
+                
+                Text("Build Healthy Habits")
+                    .foregroundColor(Color(uiColor: .secondaryLabel))
+                
+                Spacer()
+                    .frame(
+                        height: 32,
+                        alignment: .center
+                    )
+                
+                if colorScheme == .dark {
+                    SignInWithAppleButtonViewRepresentable(type: .continue, style: .white)
+                        .allowsHitTesting(true)
+                        .frame(height: 55)
+                        .cornerRadius(10)
+                }
+                else {
+                    SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
+                        .allowsHitTesting(true)
+                        .frame(height: 55)
+                        .cornerRadius(10)
+                }
+                Button {
+                    print("Edit button was tapped")
+                } label: {
+                    Label {
+                        Text("Continue with Google")
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.googleFont)
+                    } icon: {
+                        Image("GoogleLogo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 21, height: 50 )
                     }
-            .buttonStyle(.borderedProminent)
-            
-            NavigationLink {
-                AuthSignInView(showSignInView: $showSignInView)
-
-            } label: {
-                Text("Sign in to Existing Account")
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                    }
+                    .frame(height: 45)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color.googleGray)
+                
+                NavigationLink {
+                    AuthSignUpView(showSignInView: $showSignInView)
+                    
+                } label: {
+                    Text("Get Started")
+                        .font(.headline)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(10)
+                }
+                .foregroundColor(.white)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.gradPink, .gradPurple]), startPoint: .leading, endPoint: .trailing
+                                  ))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .buttonStyle(PlainButtonStyle())
+                
+                NavigationLink {
+                    SignInEmailView(showSignInView: $showSignInView)
+                    
+                } label: {
+                    Text("Sign in to Existing Account")
+                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                }
+                
+                
             }
+            Spacer()
+            
+            Image("droplet")
+                .resizable()
+                .scaledToFit()
+                .frame(
+                    width: 20,
+                    height: 20,
+                    alignment: .bottom
+                )
+        }
         .padding()
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
-)
+                .background(RadialGradient(gradient: Gradient(colors: [.grad2, .grad1]), center: .center, startRadius: 100, endRadius: 650)
+                )
                 .ignoresSafeArea()
 
     }
@@ -76,6 +125,6 @@ struct PreAuthView: View {
 
 #Preview {
     NavigationStack {
-        PreAuthView(showSignInView: .constant(false))
+        PreAuthView(showSignInView: .constant(false)).preferredColorScheme(.dark)
     }
 }

@@ -10,14 +10,20 @@ import SwiftUI
 var email = ""
 
 struct PasswordForgetView: View {
+    
+    @State private var showResult = false
+    
     var body: some View {
+    VStack {
         VStack {
             TextField("Email....", text: .constant(email))
                 .padding()
                 .background(Color.gray.opacity(0.4))
                 .cornerRadius(10)
             
+            
             Button {
+                showResult.toggle()
                 
             } label: {
                 Text("Send Link")
@@ -27,9 +33,22 @@ struct PasswordForgetView: View {
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                     .background(Color.blue)
                     .cornerRadius(10)
+                
             }
+            }
+            Spacer()
+            
+            Image("dropletPreAuth")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(
+                        width: 20,
+                        height: 20
+                        )
         }
         .padding()
+
+        
     }
 }
 

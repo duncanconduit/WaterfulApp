@@ -30,5 +30,7 @@ struct RootView: View {
     }
 }
 #Preview {
-    RootView()
+    NavigationStack {
+        RootView()
+    }
 }
