@@ -1,5 +1,5 @@
 //
-//  PreAuthVIew.swift
+//  PreAuthView.swift
 //  Waterful
 //
 //  Created by Duncan Conduit on 25/06/2023.
@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PreAuthView: View {
     
-    @Binding var showSignInView: Bool
+    @Binding var showSigninView: Bool
+    @StateObject private var viewModel = PreAuthViewModel()
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -18,7 +19,8 @@ struct PreAuthView: View {
             Spacer()
             
             VStack {
-                Image("dropletPreAuth")
+                
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
                     .frame(
@@ -41,19 +43,48 @@ struct PreAuthView: View {
                     )
                 
                 if colorScheme == .dark {
-                    SignInWithAppleButtonViewRepresentable(type: .continue, style: .white)
-                        .allowsHitTesting(true)
-                        .frame(height: 55)
-                        .cornerRadius(10)
+                    Button {
+                        Task {
+                            do {
+                                try await viewModel.signInApple()
+                                showSigninView = false
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        SignInWithAppleButtonViewRepresentable(type: .continue, style: .white)
+                            .allowsHitTesting(true)
+                            .frame(height: 55)
+                            .cornerRadius(10)
+                    }
                 }
                 else {
-                    SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
-                        .allowsHitTesting(true)
-                        .frame(height: 55)
-                        .cornerRadius(10)
+                    Button {
+                        Task {
+                            do {
+                                try await viewModel.signInApple()
+                                showSigninView = false
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
+                            .allowsHitTesting(true)
+                            .frame(height: 55)
+                            .cornerRadius(10)
+                    }
                 }
                 Button {
-                    print("Edit button was tapped")
+                    Task {
+                        do {
+                            try await viewModel.signInGoogle()
+                            showSigninView = false
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Label {
                         Text("Continue with Google")
@@ -74,7 +105,7 @@ struct PreAuthView: View {
                 .tint(Color.googleGray)
                 
                 NavigationLink {
-                    AuthSignUpView(showSignInView: $showSignInView)
+                    SignUpEmailView()
                     
                 } label: {
                     Text("Get Started")
@@ -91,7 +122,7 @@ struct PreAuthView: View {
                 .buttonStyle(PlainButtonStyle())
                 
                 NavigationLink {
-                    SignInEmailView(showSignInView: $showSignInView)
+                    SignInEmailView(showSignInView: $showSigninView)
                     
                 } label: {
                     Text("Sign in to Existing Account")
@@ -112,19 +143,19 @@ struct PreAuthView: View {
                 )
         }
         .padding()
-            .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(RadialGradient(gradient: Gradient(colors: [.grad2, .grad1]), center: .center, startRadius: 100, endRadius: 650)
-                )
-                .ignoresSafeArea()
-
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+        )
+        .ignoresSafeArea()
+        
     }
     
-   
+    
 }
 
 #Preview {
     NavigationStack {
-        PreAuthView(showSignInView: .constant(false)).preferredColorScheme(.dark)
+        PreAuthView(showSigninView: .constant(false)).preferredColorScheme(.dark)
     }
 }

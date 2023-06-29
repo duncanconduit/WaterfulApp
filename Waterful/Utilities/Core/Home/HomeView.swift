@@ -7,17 +7,10 @@
 
 import SwiftUI
 
-@MainActor
-final class SettingsViewModel: ObservableObject {
-    
-    func signOut() throws {
-       try AuthenticationManager.shared.signOut()
-    }
-}
 
 struct HomeView: View {
     
-    @StateObject private var viewModel = SettingsViewModel()
+    @StateObject private var viewModel = HomeViewModel()
     @Binding var showSigninView: Bool
     
     var body: some View {
