@@ -82,7 +82,7 @@ struct SignInEmailView: View {
                                 Text("Continue with Google")
                                     .font(.system(size: 20))
                                     .fontWeight(.semibold)
-                                    .foregroundStyle(Color.googleFont)
+                                    .foregroundStyle(Color("GoogleFont"))
                             } icon: {
                                 Image("GoogleLogo")
                                     .resizable()
@@ -94,7 +94,7 @@ struct SignInEmailView: View {
                             
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(Color.googleGray)
+                        .tint(Color("GoogleGray"))
                     }
                     .padding()
                 }
@@ -175,7 +175,7 @@ struct SignInEmailView: View {
                     .padding()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+            .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
             )
         }
     }

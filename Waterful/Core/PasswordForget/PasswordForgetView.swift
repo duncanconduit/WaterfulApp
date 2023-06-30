@@ -10,6 +10,7 @@ import SwiftUI
 var forgotEmail = ""
 
 
+
 struct PasswordForgetView: View {
     
     @State private var showResult = false
@@ -61,7 +62,7 @@ struct PasswordForgetView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+        .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
         )
         
         

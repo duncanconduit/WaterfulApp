@@ -90,7 +90,7 @@ struct PreAuthView: View {
                         Text("Continue with Google")
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color.googleFont)
+                            .foregroundStyle(Color("GoogleFont"))
                     } icon: {
                         Image("GoogleLogo")
                             .resizable()
@@ -102,7 +102,7 @@ struct PreAuthView: View {
                     
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(Color.googleGray)
+                .tint(Color("GoogleGray"))
                 
                 NavigationLink {
                     SignUpEmailView()
@@ -116,7 +116,7 @@ struct PreAuthView: View {
                 }
                 .foregroundColor(.white)
                 .background(
-                    LinearGradient(gradient: Gradient(colors: [.gradPink, .gradPurple]), startPoint: .leading, endPoint: .trailing
+                    LinearGradient(gradient: Gradient(colors: [Color("GradPink"), Color("GradPurple")]), startPoint: .leading, endPoint: .trailing
                                   ))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .buttonStyle(PlainButtonStyle())
@@ -145,7 +145,7 @@ struct PreAuthView: View {
         .padding()
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+        .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
         )
         .ignoresSafeArea()
         

@@ -54,7 +54,7 @@ struct SignUpEmailView: View {
                             .font(.system(size: 40))
                     }
                     .tint(
-                        LinearGradient(gradient: Gradient(colors: [.gradPink, .gradPurple]), startPoint: .leading, endPoint: .trailing
+                        LinearGradient(gradient: Gradient(colors: [Color("gradPink"), Color("gradPurple")]), startPoint: .leading, endPoint: .trailing
                                       ))
                     .padding()
                 }
@@ -96,7 +96,7 @@ struct SignUpEmailView: View {
                                 .font(.system(size: 40))
                         }
                         .tint(
-                            LinearGradient(gradient: Gradient(colors: [.gradPink, .gradPurple]), startPoint: .leading, endPoint: .trailing
+                            LinearGradient(gradient: Gradient(colors: [Color("gradPink"), Color("gradPurple")]), startPoint: .leading, endPoint: .trailing
                                           ))
                         .padding()
                         
@@ -120,7 +120,7 @@ struct SignUpEmailView: View {
                 )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(RadialGradient(gradient: Gradient(colors: [.grad1, .grad2]), center: .center, startRadius: 2, endRadius: 650)
+        .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
         )
     }
 }
