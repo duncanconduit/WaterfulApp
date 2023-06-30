@@ -98,6 +98,7 @@
 				56E14EF82A48DE2C00967797 /* Waterful.entitlements */,
 				561B30082A4880ED00494669 /* WaterfulApp.swift */,
 				5664DF152A4A376F0062FAD2 /* Utilities */,
+				564CDC312A4F0C27007AF6E7 /* Core */,
 				56E14EE12A48856200967797 /* Authentication */,
 				5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */,
 				561B300C2A4880EE00494669 /* Assets.xcassets */,
@@ -166,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				5664DF162A4A377F0062FAD2 /* Utilities.swift */,
-				564CDC312A4F0C27007AF6E7 /* Core */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
