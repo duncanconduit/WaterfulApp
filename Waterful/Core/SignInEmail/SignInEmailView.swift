@@ -181,9 +181,11 @@ struct SignInEmailView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        SignInEmailView(showSignInView: .constant(false))
+struct SignInEmailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            SignInEmailView(showSignInView: .constant(false))
+        }
     }
 }
 

@@ -154,8 +154,11 @@ struct PreAuthView: View {
     
 }
 
-#Preview {
-    NavigationStack {
-        PreAuthView(showSigninView: .constant(false)).preferredColorScheme(.dark)
+struct PreAuthView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        NavigationStack {
+            PreAuthView(showSigninView: .constant(false)).preferredColorScheme(.dark)
+        }
     }
 }

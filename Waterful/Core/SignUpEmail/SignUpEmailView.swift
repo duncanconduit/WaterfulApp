@@ -125,9 +125,10 @@ struct SignUpEmailView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        SignUpEmailView()
+struct SignUpEmailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            SignUpEmailView()
+        }
     }
-    
 }

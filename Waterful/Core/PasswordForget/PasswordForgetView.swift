@@ -69,6 +69,8 @@ struct PasswordForgetView: View {
     
 }
 
-#Preview {
-    PasswordForgetView()
+struct PasswordForgetView_Previews: PreviewProvider {
+    static var previews: some View {
+        PasswordForgetView()
+    }
 }

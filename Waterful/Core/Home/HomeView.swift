@@ -34,8 +34,10 @@ struct HomeView: View {
     
 }
 
-#Preview {
-    NavigationStack {
-        HomeView(showSigninView: .constant(true))
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            HomeView(showSigninView: .constant(true))
+        }
     }
 }
