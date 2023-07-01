@@ -17,7 +17,6 @@
 		5664DF0B2A4A187A0062FAD2 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664DF0A2A4A187A0062FAD2 /* SignInEmailView.swift */; };
 		5664DF102A4A31320062FAD2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF0F2A4A31320062FAD2 /* GoogleSignIn */; };
 		5664DF122A4A31320062FAD2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF112A4A31320062FAD2 /* GoogleSignInSwift */; };
-		5664DF172A4A377F0062FAD2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664DF162A4A377F0062FAD2 /* Utilities.swift */; };
 		5664DF192A4B4E9B0062FAD2 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664DF182A4B4E9B0062FAD2 /* SignInGoogleHelper.swift */; };
 		5664DF1D2A4B813F0062FAD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */; };
 		5664DF212A4C947A0062FAD2 /* SignInWithAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664DF202A4C947A0062FAD2 /* SignInWithAppleHelper.swift */; };
@@ -44,7 +43,6 @@
 		564CDC362A4F0D68007AF6E7 /* PreAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthViewModel.swift; sourceTree = "<group>"; };
 		564CDC3A2A4F0EC3007AF6E7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5664DF0A2A4A187A0062FAD2 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
-		5664DF162A4A377F0062FAD2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5664DF182A4B4E9B0062FAD2 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5664DF202A4C947A0062FAD2 /* SignInWithAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleHelper.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 			children = (
 				56E14EF82A48DE2C00967797 /* Waterful.entitlements */,
 				561B30082A4880ED00494669 /* WaterfulApp.swift */,
-				5664DF152A4A376F0062FAD2 /* Utilities */,
 				564CDC312A4F0C27007AF6E7 /* Core */,
 				56E14EE12A48856200967797 /* Authentication */,
 				5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */,
@@ -161,14 +158,6 @@
 				564CDC3A2A4F0EC3007AF6E7 /* HomeViewModel.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		5664DF152A4A376F0062FAD2 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				5664DF162A4A377F0062FAD2 /* Utilities.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		566E6D7D2A498A8B00ED60DA /* SignUpEmail */ = {
@@ -294,7 +283,6 @@
 				5664DF192A4B4E9B0062FAD2 /* SignInGoogleHelper.swift in Sources */,
 				56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */,
 				56E14EE72A488A8F00967797 /* AuthenticationManager.swift in Sources */,
-				5664DF172A4A377F0062FAD2 /* Utilities.swift in Sources */,
 				564CDC302A4F0AB9007AF6E7 /* SignUpEmailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
