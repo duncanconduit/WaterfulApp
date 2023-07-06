@@ -43,19 +43,21 @@ struct SignUpEmailView: View {
                         .minimumScaleFactor(0.1)
                         .padding()
                     
+                    
+                    
                     Button {
-                        print("button pressed")
-                        withAnimation {
-                            showButton.toggle()
-                            showDetails.toggle()
-                        }
-                    } label: {
-                        Image(systemName: "arrowshape.right.fill")
-                            .font(.system(size: 40))
-                    }
-                    .tint(
-                        LinearGradient(gradient: Gradient(colors: [Color("gradPink"), Color("gradPurple")]), startPoint: .leading, endPoint: .trailing
-                                      ))
+                       withAnimation {
+                           showButton.toggle()
+                           showDetails.toggle()
+                       }
+                   } label: {
+                       Image(systemName: "arrowshape.right.fill")
+                           .font(.system(size: 40))
+                   }
+                   .tint(
+                       LinearGradient(gradient: Gradient(colors: [Color("GradPink"), Color("GradPurple")]), startPoint: .leading, endPoint: .trailing
+                                     ))
+                   
                     .padding()
                 }
                 
@@ -96,7 +98,7 @@ struct SignUpEmailView: View {
                                 .font(.system(size: 40))
                         }
                         .tint(
-                            LinearGradient(gradient: Gradient(colors: [Color("gradPink"), Color("gradPurple")]), startPoint: .leading, endPoint: .trailing
+                            LinearGradient(gradient: Gradient(colors: [Color("GradPink"), Color("GradPurple")]), startPoint: .leading, endPoint: .trailing
                                           ))
                         .padding()
                         
