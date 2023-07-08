@@ -8,28 +8,26 @@
 import SwiftUI
 
 
+
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
     @Binding var showSigninView: Bool
     
     var body: some View {
-        VStack {
-            Text("Home Page")
-            
-            
-            Button("Sign Out") {
-                Task {
-                    do {
-                        try viewModel.signOut()
-                        showSigninView = true
-                    } catch {
-                        print(error)
-                    }
-                }
+            VStack {
+                Spacer()
+                
+                HomeViewModel.ShapeElement1()
+                    .stroke(.black, style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
+                    .frame(width: 300, height: 500)
+                
+                Spacer()
+                    
+                
             }
-        }
-        .navigationTitle(Text(Date.now, format: .dateTime.day().month().year()))
+            .navigationTitle("Home")
+
     }
     
 }

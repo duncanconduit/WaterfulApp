@@ -14,6 +14,9 @@
 		564CDC352A4F0D19007AF6E7 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564CDC342A4F0D19007AF6E7 /* SignInEmailViewModel.swift */; };
 		564CDC372A4F0D68007AF6E7 /* PreAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564CDC362A4F0D68007AF6E7 /* PreAuthViewModel.swift */; };
 		564CDC3B2A4F0EC3007AF6E7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564CDC3A2A4F0EC3007AF6E7 /* HomeViewModel.swift */; };
+		5660315C2A572DFD00F5EDC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660315B2A572DFD00F5EDC2 /* SettingsView.swift */; };
+		566031602A572F7F00F5EDC2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660315F2A572F7F00F5EDC2 /* MainView.swift */; };
+		566031622A573B7E00F5EDC2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566031612A573B7E00F5EDC2 /* SettingsViewModel.swift */; };
 		5664DF0B2A4A187A0062FAD2 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5664DF0A2A4A187A0062FAD2 /* SignInEmailView.swift */; };
 		5664DF102A4A31320062FAD2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF0F2A4A31320062FAD2 /* GoogleSignIn */; };
 		5664DF122A4A31320062FAD2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF112A4A31320062FAD2 /* GoogleSignInSwift */; };
@@ -24,6 +27,11 @@
 		5664DF252A4C987B0062FAD2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF242A4C987B0062FAD2 /* FirebaseFirestoreSwift */; };
 		566E6D812A498B1300ED60DA /* SignUpEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E6D802A498B1300ED60DA /* SignUpEmailView.swift */; };
 		567C2D8B2A4CB8EC00F048A3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567C2D8A2A4CB8EC00F048A3 /* SplashView.swift */; };
+		56B5B7112A56FF4E0047FB4E /* WaterfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B7102A56FF4E0047FB4E /* WaterfulApp.swift */; };
+		56B5B7132A56FF4E0047FB4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B7122A56FF4E0047FB4E /* ContentView.swift */; };
+		56B5B7152A56FF500047FB4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56B5B7142A56FF500047FB4E /* Assets.xcassets */; };
+		56B5B7182A56FF500047FB4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */; };
+		56B5B71B2A56FF500047FB4E /* Waterful.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 56B5B70E2A56FF4E0047FB4E /* Waterful.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		56E14EDB2A48834E00967797 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDA2A48834E00967797 /* FirebaseAnalytics */; };
 		56E14EDD2A48834E00967797 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDC2A48834E00967797 /* FirebaseAnalyticsSwift */; };
 		56E14EE02A4884ED00967797 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 56E14EDF2A4884ED00967797 /* FirebaseAuth */; };
@@ -32,6 +40,30 @@
 		56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF22A48B7F700967797 /* PasswordForgetView.swift */; };
 		56E14EF52A48B88E00967797 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF42A48B88E00967797 /* HomeView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56B5B7192A56FF500047FB4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 561B2FFD2A4880ED00494669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56B5B70D2A56FF4E0047FB4E;
+			remoteInfo = "WaterfulWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		56B5B71F2A56FF500047FB4E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				56B5B71B2A56FF500047FB4E /* Waterful.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		561B30052A4880ED00494669 /* Waterful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waterful.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,12 +74,20 @@
 		564CDC342A4F0D19007AF6E7 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
 		564CDC362A4F0D68007AF6E7 /* PreAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthViewModel.swift; sourceTree = "<group>"; };
 		564CDC3A2A4F0EC3007AF6E7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5660315B2A572DFD00F5EDC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5660315F2A572F7F00F5EDC2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		566031612A573B7E00F5EDC2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		5664DF0A2A4A187A0062FAD2 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
 		5664DF182A4B4E9B0062FAD2 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5664DF202A4C947A0062FAD2 /* SignInWithAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleHelper.swift; sourceTree = "<group>"; };
 		566E6D802A498B1300ED60DA /* SignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailView.swift; sourceTree = "<group>"; };
 		567C2D8A2A4CB8EC00F048A3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		56B5B70E2A56FF4E0047FB4E /* Waterful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waterful.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56B5B7102A56FF4E0047FB4E /* WaterfulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfulApp.swift; sourceTree = "<group>"; };
+		56B5B7122A56FF4E0047FB4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		56B5B7142A56FF500047FB4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		56E14EE62A488A8F00967797 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		56E14EEE2A48A50B00967797 /* PreAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreAuthView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		56E14EF22A48B7F700967797 /* PasswordForgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetView.swift; sourceTree = "<group>"; };
@@ -70,6 +110,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56B5B70B2A56FF4E0047FB4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				561B30072A4880ED00494669 /* Waterful */,
+				56B5B70F2A56FF4E0047FB4E /* Waterful Watch App */,
 				561B30062A4880ED00494669 /* Products */,
 				56E14EDE2A4884ED00967797 /* Frameworks */,
 			);
@@ -86,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				561B30052A4880ED00494669 /* Waterful.app */,
+				56B5B70E2A56FF4E0047FB4E /* Waterful.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				567C2D8A2A4CB8EC00F048A3 /* SplashView.swift */,
+				5660315E2A572F6F00F5EDC2 /* Main */,
+				5660315D2A572E0300F5EDC2 /* Settings */,
 				564CDC392A4F0EAB007AF6E7 /* Home */,
 				564CDC382A4F0D6E007AF6E7 /* PreAuth */,
 				564CDC332A4F0CF7007AF6E7 /* SignInEmail */,
@@ -160,6 +211,23 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		5660315D2A572E0300F5EDC2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5660315B2A572DFD00F5EDC2 /* SettingsView.swift */,
+				566031612A573B7E00F5EDC2 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5660315E2A572F6F00F5EDC2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5660315F2A572F7F00F5EDC2 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		566E6D7D2A498A8B00ED60DA /* SignUpEmail */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +235,25 @@
 				564CDC2F2A4F0AB9007AF6E7 /* SignUpEmailViewModel.swift */,
 			);
 			path = SignUpEmail;
+			sourceTree = "<group>";
+		};
+		56B5B70F2A56FF4E0047FB4E /* Waterful Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				56B5B7102A56FF4E0047FB4E /* WaterfulApp.swift */,
+				56B5B7122A56FF4E0047FB4E /* ContentView.swift */,
+				56B5B7142A56FF500047FB4E /* Assets.xcassets */,
+				56B5B7162A56FF500047FB4E /* Preview Content */,
+			);
+			path = "Waterful Watch App";
+			sourceTree = "<group>";
+		};
+		56B5B7162A56FF500047FB4E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		56E14EDE2A4884ED00967797 /* Frameworks */ = {
@@ -196,10 +283,12 @@
 				561B30012A4880ED00494669 /* Sources */,
 				561B30022A4880ED00494669 /* Frameworks */,
 				561B30032A4880ED00494669 /* Resources */,
+				56B5B71F2A56FF500047FB4E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				56B5B71A2A56FF500047FB4E /* PBXTargetDependency */,
 			);
 			name = Waterful;
 			packageProductDependencies = (
@@ -215,6 +304,23 @@
 			productReference = 561B30052A4880ED00494669 /* Waterful.app */;
 			productType = "com.apple.product-type.application";
 		};
+		56B5B70D2A56FF4E0047FB4E /* Waterful Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56B5B71C2A56FF500047FB4E /* Build configuration list for PBXNativeTarget "Waterful Watch App" */;
+			buildPhases = (
+				56B5B70A2A56FF4E0047FB4E /* Sources */,
+				56B5B70B2A56FF4E0047FB4E /* Frameworks */,
+				56B5B70C2A56FF4E0047FB4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Waterful Watch App";
+			productName = "WaterfulWatch Watch App";
+			productReference = 56B5B70E2A56FF4E0047FB4E /* Waterful.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -224,8 +330,12 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
+				ORGANIZATIONNAME = "Duncan Conduit";
 				TargetAttributes = {
 					561B30042A4880ED00494669 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					56B5B70D2A56FF4E0047FB4E = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -248,6 +358,7 @@
 			projectRoot = "";
 			targets = (
 				561B30042A4880ED00494669 /* Waterful */,
+				56B5B70D2A56FF4E0047FB4E /* Waterful Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -263,6 +374,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56B5B70C2A56FF4E0047FB4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56B5B7182A56FF500047FB4E /* Preview Assets.xcassets in Resources */,
+				56B5B7152A56FF500047FB4E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -270,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5660315C2A572DFD00F5EDC2 /* SettingsView.swift in Sources */,
 				564CDC372A4F0D68007AF6E7 /* PreAuthViewModel.swift in Sources */,
 				567C2D8B2A4CB8EC00F048A3 /* SplashView.swift in Sources */,
 				564CDC3B2A4F0EC3007AF6E7 /* HomeViewModel.swift in Sources */,
@@ -277,7 +398,9 @@
 				564CDC352A4F0D19007AF6E7 /* SignInEmailViewModel.swift in Sources */,
 				561B30092A4880ED00494669 /* WaterfulApp.swift in Sources */,
 				56E14EF52A48B88E00967797 /* HomeView.swift in Sources */,
+				566031622A573B7E00F5EDC2 /* SettingsViewModel.swift in Sources */,
 				5664DF0B2A4A187A0062FAD2 /* SignInEmailView.swift in Sources */,
+				566031602A572F7F00F5EDC2 /* MainView.swift in Sources */,
 				566E6D812A498B1300ED60DA /* SignUpEmailView.swift in Sources */,
 				5664DF212A4C947A0062FAD2 /* SignInWithAppleHelper.swift in Sources */,
 				5664DF192A4B4E9B0062FAD2 /* SignInGoogleHelper.swift in Sources */,
@@ -287,7 +410,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56B5B70A2A56FF4E0047FB4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56B5B7132A56FF4E0047FB4E /* ContentView.swift in Sources */,
+				56B5B7112A56FF4E0047FB4E /* WaterfulApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		56B5B71A2A56FF500047FB4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56B5B70D2A56FF4E0047FB4E /* Waterful Watch App */;
+			targetProxy = 56B5B7192A56FF500047FB4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		561B30112A4880EE00494669 /* Debug */ = {
@@ -412,6 +552,7 @@
 		561B30142A4880EE00494669 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -454,6 +595,7 @@
 		561B30152A4880EE00494669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -494,6 +636,66 @@
 			};
 			name = Release;
 		};
+		56B5B71D2A56FF500047FB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Waterful\\ Watch\\ App/Preview\\ Content";
+				DEVELOPMENT_TEAM = WT4C7S8W4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.duncanconduit.waterful;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duncanconduit.waterful.watchkitapp;
+				PRODUCT_NAME = Waterful;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		56B5B71E2A56FF500047FB4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Waterful\\ Watch\\ App/Preview\\ Content";
+				DEVELOPMENT_TEAM = WT4C7S8W4Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.duncanconduit.waterful;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duncanconduit.waterful.watchkitapp;
+				PRODUCT_NAME = Waterful;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -511,6 +713,15 @@
 			buildConfigurations = (
 				561B30142A4880EE00494669 /* Debug */,
 				561B30152A4880EE00494669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56B5B71C2A56FF500047FB4E /* Build configuration list for PBXNativeTarget "Waterful Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56B5B71D2A56FF500047FB4E /* Debug */,
+				56B5B71E2A56FF500047FB4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
