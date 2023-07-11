@@ -37,12 +37,10 @@ struct SplashView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 withAnimation {
                     self.showSignInView = authUser == nil
                     self.isActive = true
-                }
             }
         }
     }
