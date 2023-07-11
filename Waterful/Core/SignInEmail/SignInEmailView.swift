@@ -44,7 +44,7 @@ struct SignInEmailView: View {
                                     }
                                 }
                             } label: {
-                                SignInWithAppleButtonViewRepresentable(type: .continue, style: .white)
+                                SignInWithAppleButtonViewRepresentable(type: .signIn, style: .white)
                                     .allowsHitTesting(true)
                                     .frame(height: 55)
                                     .cornerRadius(10)
@@ -61,7 +61,7 @@ struct SignInEmailView: View {
                                     }
                                 }
                             } label: {
-                                SignInWithAppleButtonViewRepresentable(type: .continue, style: .black)
+                                SignInWithAppleButtonViewRepresentable(type: .signIn, style: .black)
                                     .allowsHitTesting(true)
                                     .frame(height: 55)
                                     .cornerRadius(10)
@@ -79,7 +79,7 @@ struct SignInEmailView: View {
                             }
                         } label: {
                             Label {
-                                Text("Continue with Google")
+                                Text("Sign in with Google")
                                     .font(.system(size: 20))
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color("GoogleFont"))

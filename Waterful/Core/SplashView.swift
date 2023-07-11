@@ -3,7 +3,9 @@
 //  Waterful
 //
 //  Created by Duncan Conduit on 28/06/2023.
+//  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
+
 
 
 import SwiftUI
@@ -24,7 +26,7 @@ struct SplashView: View {
                 }
                 else {
                     NavigationStack {
-                        HomeView(showSigninView: $showSignInView)
+                        MainView(showSigninView: $showSignInView)
                     }
                 }
             } else {
@@ -35,12 +37,10 @@ struct SplashView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 withAnimation {
                     self.showSignInView = authUser == nil
                     self.isActive = true
-                }
             }
         }
     }
