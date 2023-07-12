@@ -109,7 +109,8 @@ struct PreAuthView: View {
                     
                 } label: {
                     Text("Get Started")
-                        .font(.headline)
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
                         .cornerRadius(10)
