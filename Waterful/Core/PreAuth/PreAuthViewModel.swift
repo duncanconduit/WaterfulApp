@@ -12,37 +12,29 @@ import AuthenticationServices
 
 
 
-struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
-    
-    let type: ASAuthorizationAppleIDButton.ButtonType
-    let style: ASAuthorizationAppleIDButton.Style
-    
-    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
-        ASAuthorizationAppleIDButton(authorizationButtonType: type, authorizationButtonStyle: style)
-    }
-    
-    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
-        
-    }
-}
-
-
 @MainActor
 final class PreAuthViewModel: NSObject, ObservableObject {
     
-    @Published var didSignInWithApple: Bool = false
+    @Published var email = ""
+    @Published var password = ""
+    @Published var firstName = ""
+    @Published var lastName = ""
+
     
     
     func signInGoogle() async throws {
         let helper = SignInWithGoogleHelper()
         let tokens = try await helper.signIn()
-        try await AuthenticationManager.shared.signInwithGoogle(tokens: tokens)
+        let authDataResult = try await AuthenticationManager.shared.signInwithGoogle(tokens: tokens)
     }
     
     func signInApple() async throws {
-        let tokens = try await SignInWithAppleHelper.shared.startSignInWithAppleFlow()
-        try await AuthenticationManager.shared.signInwithApple(tokens: tokens)
-        
+        let helper = SignInWithAppleHelper()
+        let tokens = try await helper.startSignInWithAppleFlow()
+        let authDataResult = try await AuthenticationManager.shared.signInwithApple(tokens: tokens)
+        let data = UserDataModel(firstName: firstName, lastName: lastName, DOB: Date(),onboarded: true)
+        let user = DBUser(auth: authDataResult,data: data)
+        try await UserManager.shared.createNewUser(user: user)
     }
     
     

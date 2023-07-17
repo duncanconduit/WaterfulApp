@@ -105,7 +105,7 @@ struct PreAuthView: View {
                 .tint(Color("GoogleGray"))
                 
                 NavigationLink {
-                    SignUpEmailView()
+                    SignUpEmailView(showSignInView: $showSigninView)
                     
                 } label: {
                     Text("Get Started")

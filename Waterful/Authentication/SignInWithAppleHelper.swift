@@ -3,40 +3,49 @@
 //  Waterful
 //
 //  Created by Duncan Conduit on 28/06/2023.
+//  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 
 import Foundation
-import CryptoKit
+import SwiftUI
 import AuthenticationServices
-import UIKit
+import CryptoKit
+
+struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
+    
+    let type: ASAuthorizationAppleIDButton.ButtonType
+    let style: ASAuthorizationAppleIDButton.Style
+    
+    func makeUIView(context: Context) -> ASAuthorizationAppleIDButton {
+        ASAuthorizationAppleIDButton(authorizationButtonType: type, authorizationButtonStyle: style)
+    }
+    
+    func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
+        
+    }
+    
+}
 
 struct SignInWithAppleResult {
     let token: String
     let nonce: String
+    let name: String?
+    let email: String?
 }
 
-// Usage
-// let signInWithAppleResult = try await SignInWithAppleHelper.shared.startSignInWithAppleFlow()
-
+@MainActor
 final class SignInWithAppleHelper: NSObject {
     
-    static let shared = SignInWithAppleHelper()
-    private override init() { }
-    
+    private var currentNonce: String?
     private var completionHandler: ((Result<SignInWithAppleResult, Error>) -> Void)? = nil
-    private var currentNonce: String? = nil
     
-    /// Start Sign In With Apple and present OS modal.
-    ///
-    /// - Parameter viewController: ViewController to present OS modal on. If nil, function will attempt to find the top-most ViewController. Throws an error if no ViewController is found.
-    @MainActor
-    func startSignInWithAppleFlow(viewController: UIViewController? = nil) async throws -> SignInWithAppleResult {
-        return try await withCheckedThrowingContinuation { continuation in
-            startSignInWithAppleFlow { result in
+    func startSignInWithAppleFlow() async throws -> SignInWithAppleResult {
+        try await withCheckedThrowingContinuation { continuation in
+            self.startSignInWithAppleFlow { result in
                 switch result {
-                case .success(let signInWithAppleResult):
-                    continuation.resume(returning: signInWithAppleResult)
+                case .success(let signInAppleResult):
+                    continuation.resume(returning: signInAppleResult)
                     return
                 case .failure(let error):
                     continuation.resume(throwing: error)
@@ -45,25 +54,27 @@ final class SignInWithAppleHelper: NSObject {
             }
         }
     }
-    
-    @MainActor
-    func startSignInWithAppleFlow(viewController: UIViewController? = nil, completion: @escaping (Result<SignInWithAppleResult, Error>) -> Void) {
-        guard let topVC = viewController ?? topViewController() else {
-            completion(.failure(URLError(.cannotConnectToHost)))
+
+    func startSignInWithAppleFlow(completion: @escaping (Result<SignInWithAppleResult, Error>) -> Void) {
+        guard let topVC = Utilities.shared.topViewController() else {
+            completion(.failure(URLError(.badURL)))
             return
         }
         
         let nonce = randomNonceString()
         currentNonce = nonce
         completionHandler = completion
-        showOSPrompt(nonce: nonce, on: topVC)
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = topVC
+        authorizationController.performRequests()
     }
-    
-}
-
-// MARK: PRIVATE
-
-private extension SignInWithAppleHelper {
     
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
@@ -99,115 +110,48 @@ private extension SignInWithAppleHelper {
         
         return result
     }
-    
+
+    @available(iOS 13, *)
     private func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
+      let inputData = Data(input.utf8)
+      let hashedData = SHA256.hash(data: inputData)
+      let hashString = hashedData.compactMap {
+        String(format: "%02x", $0)
+      }.joined()
+
+      return hashString
     }
-    
-    private func showOSPrompt(nonce: String, on viewController: UIViewController) {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = viewController
-        
-        authorizationController.performRequests()
-    }
-    
-    private enum SignInWithAppleError: LocalizedError {
-        case invalidCredential
-        case invalidState
-        case unableToFetchToken
-        case unableToSerializeToken
-        case unableToFindNonce
-        
-        var errorDescription: String? {
-            switch self {
-            case .invalidCredential:
-                return "Invalid credential: ASAuthorization failure."
-            case .invalidState:
-                return "Invalid state: A login callback was received, but no login request was sent."
-            case .unableToFetchToken:
-                return "Unable to fetch identity token"
-            case .unableToSerializeToken:
-                return "Unable to serialize token string from data"
-            case .unableToFindNonce:
-                return "Unable to find current nonce."
-            }
-        }
-    }
-    
-    private func getTokenFromAuthorization(authorization: ASAuthorization) throws -> String {
-        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-            throw SignInWithAppleError.invalidCredential
-        }
-        
-        guard let appleIDToken = appleIDCredential.identityToken else {
-            throw SignInWithAppleError.unableToFetchToken
-        }
-        
-        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-            throw SignInWithAppleError.unableToSerializeToken
-        }
-        
-        return idTokenString
-    }
-    
-    private func getCurrentNonce() throws -> String {
-        guard let currentNonce else {
-            throw SignInWithAppleError.unableToFindNonce
-        }
-        return currentNonce
-    }
-    
-    @MainActor
-    private func topViewController(controller: UIViewController? = nil) -> UIViewController? {
-        let controller = controller ?? UIApplication.shared.keyWindow?.rootViewController
-        
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
-        }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
-        }
-        if let presented = controller?.presentedViewController {
-            return topViewController(controller: presented)
-        }
-        return controller
-    }
+
     
 }
 
 extension SignInWithAppleHelper: ASAuthorizationControllerDelegate {
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        do {
-            let token = try getTokenFromAuthorization(authorization: authorization)
-            let nonce = try getCurrentNonce()
-            let result = SignInWithAppleResult(token: token, nonce: nonce)
-            completionHandler?(.success(result))
-        } catch {
-            completionHandler?(.failure(error))
+        guard
+            let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+            let appleIDToken = appleIDCredential.identityToken,
+            let idTokenString = String(data: appleIDToken, encoding: .utf8),
+            let nonce = currentNonce else {
+            completionHandler?(.failure(URLError(.badServerResponse)))
             return
         }
+        let name = appleIDCredential.fullName?.givenName
+        let email = appleIDCredential.email
+
+        let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce, name: name, email: email)
+        completionHandler?(.success(tokens))
     }
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        completionHandler?(.failure(error))
-        return
+        print("Sign in with Apple errored: \(error)")
+        completionHandler?(.failure(URLError(.cannotFindHost)))
     }
+
 }
 
 extension UIViewController: ASAuthorizationControllerPresentationContextProviding {
+    
     public func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }

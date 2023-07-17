@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 @MainActor
 final class SignUpEmailViewModel: ObservableObject {
