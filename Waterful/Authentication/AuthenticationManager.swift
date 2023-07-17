@@ -9,17 +9,30 @@ import Foundation
 import FirebaseAuth
 
 
+
+struct UserDataModel {
+    
+    let firstName: String
+    let lastName: String
+    let DOB: Date
+    let onboarded: Bool
+    
+}
+
+
 struct AuthDataResultModel {
     let uid: String
     let email: String?
     let photoUrl: String?
+
     
     init(user: User) {
         self.uid = user.uid
         self.email = user.email
         self.photoUrl = user.photoURL?.absoluteString
-        
     }
+
+
 }
 
 enum AuthProviderOption: String {
@@ -47,8 +60,7 @@ final class AuthenticationManager {
         
     }
     
-    // google.com
-    // password
+
     
     func getProvider() throws -> [AuthProviderOption] {
         guard let providerData = Auth.auth().currentUser?.providerData else {
@@ -92,7 +104,7 @@ extension AuthenticationManager {
 extension AuthenticationManager {
     
     @discardableResult
-    func signInwithGoogle(tokens: GoogleSignInResult) async throws -> AuthDataResultModel {
+    func signInwithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken,
                                                        accessToken: tokens.accessToken)
         return try await signIn(credential: credential)

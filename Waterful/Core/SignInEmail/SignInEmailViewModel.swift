@@ -10,6 +10,9 @@ import Foundation
 @MainActor
 final class SignInEmailViewModel: ObservableObject {
     
+    
+    
+    
     @Published var email = ""
     @Published var password = ""
     
@@ -19,7 +22,10 @@ final class SignInEmailViewModel: ObservableObject {
             return
         }
         
-        try await AuthenticationManager.shared.signInUser(email: email, password: password)
+        let authDataResult = try await AuthenticationManager.shared.signInUser(email: email, password: password)
+        let udata = try await UserManager.shared.getUser(userId: authDataResult.uid)
+        print(udata.email!)
     }
+    
     
 }

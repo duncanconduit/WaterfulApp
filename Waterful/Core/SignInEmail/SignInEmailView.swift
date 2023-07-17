@@ -8,7 +8,19 @@
 import SwiftUI
 
 
+
+
+
 struct SignInEmailView: View {
+    
+
+    
+    let authFeedback = UINotificationFeedbackGenerator()
+    
+    init(showSignInView: Binding<Bool>) {
+           authFeedback.prepare()
+            self._showSignInView = showSignInView
+       }
     
     @State private var isActive = false
     @StateObject private var viewModel = SignInEmailViewModel()
@@ -19,6 +31,8 @@ struct SignInEmailView: View {
     @State private var showPassword = false
     @State private var showButton = true
     @State private var showIncorrect = false
+    
+    
     
     var body: some View {
         VStack {
@@ -100,6 +114,7 @@ struct SignInEmailView: View {
                 }
                 HStack {
                     TextField("" ,text: $viewModel.email, prompt: Text("Email").font(.system(size: 30)))
+                        .textContentType(.username)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .font(.system(size: 30))
@@ -123,6 +138,7 @@ struct SignInEmailView: View {
                 if showPassword {
                     HStack {
                         SecureField("" ,text: $viewModel.password, prompt: Text("Password").font(.system(size: 30)))
+                            .textContentType(.password)
                             .textInputAutocapitalization(.never)
                             .font(.system(size: 30))
                             .minimumScaleFactor(0.1)
@@ -136,6 +152,7 @@ struct SignInEmailView: View {
                                 } catch {
                                     withAnimation {
                                         showIncorrect = true
+                                        authFeedback.notificationOccurred(.error)
                                     }
                                 }
                             }
@@ -146,6 +163,7 @@ struct SignInEmailView: View {
                         }
                         .padding()
                     }
+            
                     if showIncorrect {
                         Text("Incorrect email or password")
                             .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
@@ -184,7 +202,7 @@ struct SignInEmailView: View {
 struct SignInEmailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SignInEmailView(showSignInView: .constant(false))
+            SignInEmailView(showSignInView: .constant(true))
         }
     }
 }
