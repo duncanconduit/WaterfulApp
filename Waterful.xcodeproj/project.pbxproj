@@ -25,6 +25,7 @@
 		5664DF232A4C987B0062FAD2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF222A4C987B0062FAD2 /* FirebaseFirestore */; };
 		5664DF252A4C987B0062FAD2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5664DF242A4C987B0062FAD2 /* FirebaseFirestoreSwift */; };
 		566E6D812A498B1300ED60DA /* SignUpEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566E6D802A498B1300ED60DA /* SignUpEmailView.swift */; };
+		567082C12AAE251D0033364E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567082C02AAE251D0033364E /* CustomButton.swift */; };
 		567C2D8B2A4CB8EC00F048A3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567C2D8A2A4CB8EC00F048A3 /* SplashView.swift */; };
 		568D74262A60357100752955 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D74252A60357100752955 /* UserManager.swift */; };
 		568D74312A6304B800752955 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D74302A6304B800752955 /* SignUpViewModel.swift */; };
@@ -41,6 +42,7 @@
 		56E14EEF2A48A50B00967797 /* PreAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EEE2A48A50B00967797 /* PreAuthView.swift */; };
 		56E14EF32A48B7F700967797 /* PasswordForgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF22A48B7F700967797 /* PasswordForgetView.swift */; };
 		56E14EF52A48B88E00967797 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF42A48B88E00967797 /* HomeView.swift */; };
+		56FA6D772AAF07F400996800 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 56FA6D762AAF07F400996800 /* PopupView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,7 @@
 		5664DF1C2A4B813F0062FAD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5664DF202A4C947A0062FAD2 /* SignInWithAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleHelper.swift; sourceTree = "<group>"; };
 		566E6D802A498B1300ED60DA /* SignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailView.swift; sourceTree = "<group>"; };
+		567082C02AAE251D0033364E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		567C2D8A2A4CB8EC00F048A3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		568D74252A60357100752955 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		568D74302A6304B800752955 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		56E14EF22A48B7F700967797 /* PasswordForgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgetView.swift; sourceTree = "<group>"; };
 		56E14EF42A48B88E00967797 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		56E14EF82A48DE2C00967797 /* Waterful.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waterful.entitlements; sourceTree = "<group>"; };
+		56FA6D752AAF07EB00996800 /* PopupView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PopupView; path = ../PopupView; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56FA6D772AAF07F400996800 /* PopupView in Frameworks */,
 				5664DF122A4A31320062FAD2 /* GoogleSignInSwift in Frameworks */,
 				56E14EDD2A48834E00967797 /* FirebaseAnalyticsSwift in Frameworks */,
 				5664DF102A4A31320062FAD2 /* GoogleSignIn in Frameworks */,
@@ -213,6 +218,7 @@
 			children = (
 				56E14EF42A48B88E00967797 /* HomeView.swift */,
 				564CDC3A2A4F0EC3007AF6E7 /* HomeViewModel.swift */,
+				567082C02AAE251D0033364E /* CustomButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -281,6 +287,7 @@
 		56E14EDE2A4884ED00967797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56FA6D752AAF07EB00996800 /* PopupView */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,6 +328,7 @@
 				5664DF112A4A31320062FAD2 /* GoogleSignInSwift */,
 				5664DF222A4C987B0062FAD2 /* FirebaseFirestore */,
 				5664DF242A4C987B0062FAD2 /* FirebaseFirestoreSwift */,
+				56FA6D762AAF07F400996800 /* PopupView */,
 			);
 			productName = Waterful;
 			productReference = 561B30052A4880ED00494669 /* Waterful.app */;
@@ -416,6 +424,7 @@
 				5660315C2A572DFD00F5EDC2 /* SettingsView.swift in Sources */,
 				564CDC372A4F0D68007AF6E7 /* PreAuthViewModel.swift in Sources */,
 				567C2D8B2A4CB8EC00F048A3 /* SplashView.swift in Sources */,
+				567082C12AAE251D0033364E /* CustomButton.swift in Sources */,
 				568D74312A6304B800752955 /* SignUpViewModel.swift in Sources */,
 				564CDC3B2A4F0EC3007AF6E7 /* HomeViewModel.swift in Sources */,
 				56E14EEF2A48A50B00967797 /* PreAuthView.swift in Sources */,
@@ -597,7 +606,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -641,7 +650,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -806,6 +815,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		56FA6D762AAF07F400996800 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

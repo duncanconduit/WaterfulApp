@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
-
+import PopupView
 
 
 struct HomeView: View {
     
-    @State private var percent = 50.0
+   
+    @State private var mils = 500.0
+    @State private var goal = 1800.0
+    @State var showingPopup = false
+   
+   
+   
     @StateObject private var viewModel = HomeViewModel()
     @Binding var showSigninView: Bool
     
@@ -43,6 +49,7 @@ struct HomeView: View {
         return greetingText
     }
     
+    
     var body: some View {
         VStack {
             
@@ -70,34 +77,58 @@ struct HomeView: View {
             //                HomeViewModel.ShapeElement1()
             //                    .stroke(style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
             //                    .frame(width: 300, height: 500)
+                
+            CircleWaveView(percent: Int(self.mils/self.goal * 100))
             
-            CircleWaveView(percent: Int(self.percent))
-            Slider(value: self.$percent, in: 0...100)
-                .padding()
             
             Spacer()
-                .frame(maxHeight: 10)
+                .frame(maxHeight: 20)
             
-            Text("\(self.percent)%")
+            Text("\(Int(self.mils))ml of \(Int(self.goal))ml")
                 .font(.title)
             
             Spacer()
                 .frame(maxHeight: 20)
             
-            Button {
-                
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.system(size: 60))
+            CustomButton(buttonTint: .blue) {
+                HStack(spacing: 10) {
+                    Image(systemName: "plus")
+                }
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+            } action: {
+                mils = mils + 100
+                showingPopup = true
+                return .success
             }
+            .tint(.white)
+            .buttonStyle(.opacityLess)
             
             Spacer()
             
         }
         
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
+        )
+        .popup(isPresented: $showingPopup) { // 3
+                   ZStack { // 4
+                       Color.blue.frame(width: 200, height: 100)
+                       Text("Popup!")
+                   }
+               } customize: {
+                   $0
+                       .type (.toast)
+                       .position(.bottom)
+                       .dragToDismiss(true)
+               }
+
     }
-}
     
+}
+
+
+
 struct Wave: Shape {
     
     var offset: Angle
@@ -149,10 +180,12 @@ struct Wave: Shape {
                 ZStack {
                     HomeViewModel.ShapeElement1()
                         .stroke(Color.black, lineWidth: 0.7)
+                        .blur(radius: 2)
                         .overlay(
                             Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
-                                .fill(Color(red: 0, green: 0.5, blue: 0.75, opacity: 0.5))
-                                .clipShape(HomeViewModel.ShapeElement1().scale(0.99))
+                                .fill(RadialGradient(gradient: Gradient(colors: [Color(.white), Color("Droplet1")]), center: .center, startRadius: 2, endRadius: 250))
+                                .clipShape(HomeViewModel.ShapeElement1().scale(1))
+                                
                         )
                 }
             }
@@ -164,6 +197,92 @@ struct Wave: Shape {
             }
         }
     }
+
+private struct ActivityView: View {
+    let emoji: String
+    let name: String
+    let isSelected: Bool
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Text(emoji)
+                .font(.system(size: 24))
+            
+            Text(name.uppercased())
+                .font(.system(size: 13, weight: isSelected ? .regular : .light))
+            
+            Spacer()
+            
+            if isSelected {
+                Image(systemName: "checkmark")
+                    .foregroundColor(Color("9265F8"))
+            }
+        }
+        .opacity(isSelected ? 1.0 : 0.8)
+    }
+}
+
+
+struct ActionSheetView<Content: View>: View {
+
+    let content: Content
+    let topPadding: CGFloat
+    let fixedHeight: Bool
+    let bgColor: Color
+
+    init(topPadding: CGFloat = 100, fixedHeight: Bool = false, bgColor: Color = .white, @ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.topPadding = topPadding
+        self.fixedHeight = fixedHeight
+        self.bgColor = bgColor
+    }
+
+    var body: some View {
+        ZStack {
+            bgColor.cornerRadius(40)
+            VStack {
+                Color.black
+                    .opacity(0.2)
+                    .frame(width: 30, height: 6)
+                    .clipShape(Capsule())
+                    .padding(.top, 15)
+                    .padding(.bottom, 10)
+
+                content
+                    .padding(.bottom, 30)
+                    .applyIf(fixedHeight) {
+                        $0.frame(height: UIScreen.main.bounds.height - topPadding)
+                    }
+                    .applyIf(!fixedHeight) {
+                        $0.frame(maxHeight: UIScreen.main.bounds.height - topPadding)
+                    }
+            }
+        }
+        .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+
+struct ActionSheetFirst: View {
+    var body: some View {
+        ActionSheetView(bgColor: .white) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    ActivityView(emoji: "🤼‍♂️", name: "Sparring", isSelected: true)
+                    ActivityView(emoji: "🧘", name: "Yoga", isSelected: false)
+                    ActivityView(emoji: "🚴", name: "cycling", isSelected: false)
+                    ActivityView(emoji: "🏊", name: "Swimming", isSelected: false)
+                    ActivityView(emoji: "🏄", name: "Surfing", isSelected: false)
+                    ActivityView(emoji: "🤸", name: "Fitness", isSelected: false)
+                    ActivityView(emoji: "⛹️", name: "Basketball", isSelected: true)
+                    ActivityView(emoji: "🏋️", name: "Lifting Weights", isSelected: false)
+                    ActivityView(emoji: "⚽️", name: "Football", isSelected: false)
+                }
+                .padding(.horizontal, 20)
+            }
+        }
+    }
+}
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
