@@ -26,10 +26,10 @@ struct HomeView: View {
     @State private var showingPopup = false
     @State private var counter: Int = 0
     @State private var ShowSettings = false
+    @State private var ShowCalendar = false
     @State private var isCompleted: Bool = false
     @State private var endButton: Bool = false
     @State private var data: WaterIntake!
-    @State  private var ShowCalendar = false
     @StateObject  private var viewModel = HomeViewModel()
     
     
@@ -63,10 +63,11 @@ struct HomeView: View {
             HStack {
                 
                 Button {
-                    
+                    withAnimation(.spring()) {
+                        ShowCalendar.toggle()
+                    }
                 } label: {
-                    Image(systemName: "calendar.circle")
-                        .resizable()
+                    HomeViewModel.CalendarButton()
                         .scaledToFit()
                         .frame(
                             width: 50,
@@ -74,7 +75,7 @@ struct HomeView: View {
                             alignment: .leading
                         )
                         .padding(.leading, 20)
-                        .foregroundColor(.navTitle)
+                        
                 }
                 
                 
@@ -82,7 +83,7 @@ struct HomeView: View {
                 Spacer()
                 
                 Button {
-                    withAnimation {
+                    withAnimation(.spring()) {
                         ShowSettings.toggle()
                     }
                     
@@ -181,6 +182,9 @@ struct HomeView: View {
         .background(.appearance)
         .easyFullScreenCover(isPresented: $ShowSettings) {
             SettingsView()
+        }
+        .easyFullScreenCover(isPresented: $ShowCalendar) {
+            HistoryView()
         }
         .popup(isPresented: $showingPopup) {
             HomeViewModel.ActionSheetFirst()

@@ -25,6 +25,7 @@
 		56B5B7182A56FF500047FB4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */; };
 		56B5B71B2A56FF500047FB4E /* Waterful.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 56B5B70E2A56FF4E0047FB4E /* Waterful.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		56DD305B2AF2D720004E0A4F /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 56DD305A2AF2D720004E0A4F /* PopupView */; };
+		56DD305E2AF2F23B004E0A4F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD305D2AF2F23B004E0A4F /* HistoryView.swift */; };
 		56E14EF52A48B88E00967797 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF42A48B88E00967797 /* HomeView.swift */; };
 		56FA6D772AAF07F400996800 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 56FA6D762AAF07F400996800 /* PopupView */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		56B5B7122A56FF4E0047FB4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		56B5B7142A56FF500047FB4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		56DD305D2AF2F23B004E0A4F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		56E14EF42A48B88E00967797 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		56E14EF82A48DE2C00967797 /* Waterful.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waterful.entitlements; sourceTree = "<group>"; };
 		56FA6D752AAF07EB00996800 /* PopupView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PopupView; path = ../PopupView; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		564CDC312A4F0C27007AF6E7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				56DD305C2AF2F223004E0A4F /* History */,
 				563C8AAD2AF180DD003A7043 /* Settings */,
 				564CDC392A4F0EAB007AF6E7 /* Home */,
 			);
@@ -201,6 +204,14 @@
 				56B5B7172A56FF500047FB4E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		56DD305C2AF2F223004E0A4F /* History */ = {
+			isa = PBXGroup;
+			children = (
+				56DD305D2AF2F23B004E0A4F /* HistoryView.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		56E14EDE2A4884ED00967797 /* Frameworks */ = {
@@ -330,6 +341,7 @@
 				564CDC3B2A4F0EC3007AF6E7 /* HomeViewModel.swift in Sources */,
 				5613193F2AEAFA51005432D9 /* WaterIntake.swift in Sources */,
 				561B30092A4880ED00494669 /* WaterfulApp.swift in Sources */,
+				56DD305E2AF2F23B004E0A4F /* HistoryView.swift in Sources */,
 				563C8AB52AF2A75D003A7043 /* Utils.swift in Sources */,
 				563C8AAF2AF1A6E5003A7043 /* UserPreferences.swift in Sources */,
 				56E14EF52A48B88E00967797 /* HomeView.swift in Sources */,
