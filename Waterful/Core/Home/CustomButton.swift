@@ -52,16 +52,14 @@ struct CustomButton<ButtonContent: View>: View {
                 .padding(.horizontal, 30)
                 .padding(.vertical, 12)
                 .opacity(isLoading ? 0 : 1)
-                .lineLimit(1)
+                .lineLimit(3)
                 .background {
                     GeometryReader {
-                        let size = $0.size
-                        let circleRadius = 50.0
-                        /// Optional if you want natural Circle radius based on View Size, then use this,
-                        //let circleRadius = size.height
+                        let size = $0.size // Size of the button
+                        let circleRadius = size.height * 1.5 // Radius of the circle
                         
-                        Capsule()
-                            .fill(Color(taskStatus == .idle ? buttonTint : taskStatus == .success ? .green : .red).shadow(.drop(color: .black.opacity(0.15), radius: 30)))
+                        Circle()
+                            .fill(Color(taskStatus == .idle ? buttonTint : taskStatus == .success ? .green : .red).shadow(.drop(color: .black.opacity(0.15), radius: 80)))
                             .frame(width: isLoading ? circleRadius : nil, height: isLoading ? circleRadius : nil)
                             .frame(width: size.width, height: size.height, alignment: .center)
                     }
@@ -130,5 +128,6 @@ enum TaskStatus: Equatable {
     case failed(String)
     case success
 }
+
 
 

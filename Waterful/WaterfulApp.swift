@@ -6,18 +6,26 @@
 //
 
 import SwiftUI
-import Firebase
+import SwiftData
 
 @main
 struct WaterfulApp: App {
     
-    init() {
-        FirebaseApp.configure()
-    }
+    @State var selectedAppearance: SettingsViewModel.Appearance = .system
+    
+    let container: ModelContainer = {
+        
+        let schema = Schema([WaterIntake.self])
+        let container =  try! ModelContainer(for: schema, configurations: [])
+        return container
+    }()
+    
     var body: some Scene {
         WindowGroup {
-            SplashView()
-
+            HomeView(selectedAppearance: $selectedAppearance)
+            .preferredColorScheme(selectedAppearance.tag == 0 ? .light : selectedAppearance.tag == 1 ? .dark : nil)
+           
         }
+        .modelContainer(container)
     }
 }

@@ -6,23 +6,36 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 import PopupView
+import SwiftData
+
+
+
 
 
 struct HomeView: View {
     
-   
-    @State private var mils = 500.0
-    @State private var goal = 1800.0
+    @Environment(\.modelContext) private var context
+    @Query(filter: WaterIntake.currentPredicate(),
+           sort: \WaterIntake.date
+    ) var waterintakes: [WaterIntake]
+    @State  var goal = 2000
     @State var showingPopup = false
-   
-   
-   
-    @StateObject private var viewModel = HomeViewModel()
-    @Binding var showSigninView: Bool
+    @State  var counter: Int = 0
+    @State  var ShowSettings = false
+    @State var intake: Int = 0
+    @State  var isCompleted: Bool = false
+    @State var data: WaterIntake!
+    @State  var ShowCalendar = false
+    @Binding var selectedAppearance: SettingsViewModel.Appearance
+    @StateObject  var viewModel = HomeViewModel()
     
     
-
+    
+    
+    
+    
     
     
     
@@ -54,128 +67,173 @@ struct HomeView: View {
         VStack {
             
             HStack {
-                Image(systemName: "gearshape.circle")
-                    .font(.system(size: 40))
-                    .padding()
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "calendar.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(
+                            width: 50,
+                            height: 50,
+                            alignment: .leading
+                        )
+                        .padding(.leading, 20)
+                        .foregroundColor(Color("Color1"))
+                }
+                
+                
                 
                 Spacer()
+                
+                Button {
+                    withAnimation {
+                        ShowSettings.toggle()
+                    }
+                    
+                } label: {
+                    Image(systemName: "gear.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(
+                            width: 50,
+                            height: 50,
+                            alignment: .leading
+                        )
+                        .padding(.trailing, 20)
+                        .foregroundColor(Color("Color1"))
+                }
+                
+                
+            }
+            
+            VStack {
                 
                 Text(greetingLogic())
-                    .font(.title)
+                    .font(.system(.largeTitle, design: .rounded))
+                    .bold()
+                    .foregroundStyle(Color("Grad2"))
+                    .padding(.bottom, 5)
+                
+                Text("\(Int(intake))ml of \(Int(goal))ml")
+                    .font(.system(.title2, design: .rounded))
+                    .bold()
+                    .foregroundStyle(.gray)
+                
+                
                 
                 Spacer()
+                    .frame(maxHeight: 60)
                 
-                Image(systemName: "person.circle")
-                    .font(.system(size: 40))
-                    .padding()
+                CircleWaveView(percent: Int(intake/self.goal * 100))
                 
                 
+                Spacer()
+                    .frame(maxHeight: 60)
+                
+                
+                CustomButton(buttonTint: Color("Grad2")) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(
+                                width: 40,
+                                height: 40
+                            )
+                    }
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                } action: {
+                    intake = intake + 100
+                    data.intake = Double(intake)
+                    context.insert(data)
+                    showingPopup = true
+                    counter += 1
+                    return .success            }
+                .tint(.white)
+                .buttonStyle(.opacityLess)
+                .confettiCannon(counter: $counter, num: 50, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
+                Spacer()
+                    .frame(maxHeight: 20)
+                Spacer()
                 
             }
             
-            //                
-            //                HomeViewModel.ShapeElement1()
-            //                    .stroke(style: StrokeStyle(lineWidth: 1, lineCap: .round, lineJoin: .round))
-            //                    .frame(width: 300, height: 500)
-                
-            CircleWaveView(percent: Int(self.mils/self.goal * 100))
-            
-            
-            Spacer()
-                .frame(maxHeight: 20)
-            
-            Text("\(Int(self.mils))ml of \(Int(self.goal))ml")
-                .font(.title)
-            
-            Spacer()
-                .frame(maxHeight: 20)
-            
-            CustomButton(buttonTint: .blue) {
-                HStack(spacing: 10) {
-                    Image(systemName: "plus")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onAppear {
+                intake = Int(waterintakes.last?.intake ?? 0)
+                data = WaterIntake(date: Date(), intake: Double(intake), isCompleted: false)
+            }
+            .popup(isPresented: $showingPopup) { // 3
+                ZStack { // 4
+                    Color.blue.frame(width: 200, height: 100)
+                    Text("Popup!")
                 }
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-            } action: {
-                mils = mils + 100
-                showingPopup = true
-                return .success
+            } customize: {
+                $0
+                    .type (.toast)
+                    .position(.bottom)
+                    .dragToDismiss(true)
             }
-            .tint(.white)
-            .buttonStyle(.opacityLess)
-            
-            Spacer()
+            .easyFullScreenCover(isPresented: $ShowSettings) {
+                SettingsView(selectedAppearance: $selectedAppearance)
+            }
             
         }
         
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(RadialGradient(gradient: Gradient(colors: [Color("Grad1"), Color("Grad2")]), center: .center, startRadius: 2, endRadius: 650)
-        )
-        .popup(isPresented: $showingPopup) { // 3
-                   ZStack { // 4
-                       Color.blue.frame(width: 200, height: 100)
-                       Text("Popup!")
-                   }
-               } customize: {
-                   $0
-                       .type (.toast)
-                       .position(.bottom)
-                       .dragToDismiss(true)
-               }
-
     }
     
-}
-
-
-
-struct Wave: Shape {
     
-    var offset: Angle
-    var percent: Double
     
-    var animatableData: Double {
-        get { offset.degrees }
-        set { offset = Angle(degrees: newValue) }
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        var p = Path()
+    struct Wave: Shape {
         
-        // empirically determined values for wave to be seen
-        // at 0 and 100 percent
-        let lowfudge = 0.02
-        let highfudge = 0.98
+        var offset: Angle
+        var percent: Double
         
-        let newpercent = lowfudge + (highfudge - lowfudge) * percent
-        let waveHeight = 0.015 * rect.height
-        let yoffset = CGFloat(1 - newpercent) * (rect.height - 4 * waveHeight) + 2 * waveHeight
-        let startAngle = offset
-        let endAngle = offset + Angle(degrees: 360)
-        
-        p.move(to: CGPoint(x: 0, y: yoffset + waveHeight * CGFloat(sin(offset.radians))))
-        
-        for angle in stride(from: startAngle.degrees, through: endAngle.degrees, by: 5) {
-            let x = CGFloat((angle - startAngle.degrees) / 360) * rect.width
-            p.addLine(to: CGPoint(x: x, y: yoffset + waveHeight * CGFloat(sin(Angle(degrees: angle).radians))))
+        var animatableData: Double {
+            get { offset.degrees }
+            set { offset = Angle(degrees: newValue) }
         }
         
-        p.addLine(to: CGPoint(x: rect.width, y: rect.height))
-        p.addLine(to: CGPoint(x: 0, y: rect.height))
-        p.closeSubpath()
-        
-        return p
+        func path(in rect: CGRect) -> Path {
+            var p = Path()
+            
+            // empirically determined values for wave to be seen
+            // at 0 and 100 percent
+            let lowfudge = 0.02
+            let highfudge = 0.98
+            
+            let newpercent = lowfudge + (highfudge - lowfudge) * percent
+            let waveHeight = 0.015 * rect.height
+            let yoffset = CGFloat(1 - newpercent) * (rect.height - 4 * waveHeight) + 2 * waveHeight
+            let startAngle = offset
+            let endAngle = offset + Angle(degrees: 360)
+            
+            p.move(to: CGPoint(x: 0, y: yoffset + waveHeight * CGFloat(sin(offset.radians))))
+            
+            for angle in stride(from: startAngle.degrees, through: endAngle.degrees, by: 5) {
+                let x = CGFloat((angle - startAngle.degrees) / 360) * rect.width
+                p.addLine(to: CGPoint(x: x, y: yoffset + waveHeight * CGFloat(sin(Angle(degrees: angle).radians))))
+            }
+            
+            p.addLine(to: CGPoint(x: rect.width, y: rect.height))
+            p.addLine(to: CGPoint(x: 0, y: rect.height))
+            p.closeSubpath()
+            
+            return p
+        }
     }
-}
-
-
+    
+    
     struct CircleWaveView: View {
         
         @State private var waveOffset = Angle(degrees: 0)
         let percent: Int
         
         var body: some View {
-
+            
             GeometryReader { geo in
                 ZStack {
                     HomeViewModel.ShapeElement1()
@@ -185,109 +243,21 @@ struct Wave: Shape {
                             Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
                                 .fill(RadialGradient(gradient: Gradient(colors: [Color(.white), Color("Droplet1")]), center: .center, startRadius: 2, endRadius: 250))
                                 .clipShape(HomeViewModel.ShapeElement1().scale(1))
-                                
+                                .onAppear {
+                                    withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                        self.waveOffset = Angle(degrees: 360)
+                                    }
+                                }
+                            
                         )
                 }
             }
+            
             .aspectRatio(1, contentMode: .fit)
-            .onAppear {
-                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                self.waveOffset = Angle(degrees: 360)
-                }
-            }
-        }
-    }
-
-private struct ActivityView: View {
-    let emoji: String
-    let name: String
-    let isSelected: Bool
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Text(emoji)
-                .font(.system(size: 24))
             
-            Text(name.uppercased())
-                .font(.system(size: 13, weight: isSelected ? .regular : .light))
-            
-            Spacer()
-            
-            if isSelected {
-                Image(systemName: "checkmark")
-                    .foregroundColor(Color("9265F8"))
-            }
         }
-        .opacity(isSelected ? 1.0 : 0.8)
     }
+    
 }
 
 
-struct ActionSheetView<Content: View>: View {
-
-    let content: Content
-    let topPadding: CGFloat
-    let fixedHeight: Bool
-    let bgColor: Color
-
-    init(topPadding: CGFloat = 100, fixedHeight: Bool = false, bgColor: Color = .white, @ViewBuilder content: () -> Content) {
-        self.content = content()
-        self.topPadding = topPadding
-        self.fixedHeight = fixedHeight
-        self.bgColor = bgColor
-    }
-
-    var body: some View {
-        ZStack {
-            bgColor.cornerRadius(40)
-            VStack {
-                Color.black
-                    .opacity(0.2)
-                    .frame(width: 30, height: 6)
-                    .clipShape(Capsule())
-                    .padding(.top, 15)
-                    .padding(.bottom, 10)
-
-                content
-                    .padding(.bottom, 30)
-                    .applyIf(fixedHeight) {
-                        $0.frame(height: UIScreen.main.bounds.height - topPadding)
-                    }
-                    .applyIf(!fixedHeight) {
-                        $0.frame(maxHeight: UIScreen.main.bounds.height - topPadding)
-                    }
-            }
-        }
-        .fixedSize(horizontal: false, vertical: true)
-    }
-}
-
-
-struct ActionSheetFirst: View {
-    var body: some View {
-        ActionSheetView(bgColor: .white) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    ActivityView(emoji: "🤼‍♂️", name: "Sparring", isSelected: true)
-                    ActivityView(emoji: "🧘", name: "Yoga", isSelected: false)
-                    ActivityView(emoji: "🚴", name: "cycling", isSelected: false)
-                    ActivityView(emoji: "🏊", name: "Swimming", isSelected: false)
-                    ActivityView(emoji: "🏄", name: "Surfing", isSelected: false)
-                    ActivityView(emoji: "🤸", name: "Fitness", isSelected: false)
-                    ActivityView(emoji: "⛹️", name: "Basketball", isSelected: true)
-                    ActivityView(emoji: "🏋️", name: "Lifting Weights", isSelected: false)
-                    ActivityView(emoji: "⚽️", name: "Football", isSelected: false)
-                }
-                .padding(.horizontal, 20)
-            }
-        }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            HomeView(showSigninView: .constant(true))
-        }
-    }
-}
