@@ -11,7 +11,7 @@
 import SwiftUI
 
 
-public protocol AppearanceProtocol: CaseIterable, Hashable {
+public protocol AppearanceProtocol: CaseIterable, Hashable, Encodable, Decodable {
     var tag: Int { get }
     var imageName: String { get }
     var title: String { get }
@@ -89,12 +89,13 @@ final class SettingsViewModel: ObservableObject {
 
     struct AppearanceButton<T: AppearanceProtocol>: View {
         var currentTab: T
-        @Binding var selectedTab: T
+        @Binding var selectedAppearance: Int
 
         var body: some View {
             Button {
-                selectedTab = currentTab
-                print(selectedTab.tag)
+                selectedAppearance = currentTab.tag
+                UserDefaults.standard.set(currentTab.tag, forKey: "appearance")
+                print(UserDefaults.standard.integer(forKey: "appearance"))
             } label: {
                 HStack {
                     
@@ -115,7 +116,7 @@ final class SettingsViewModel: ObservableObject {
                     Spacer()
                         .frame(minWidth: 90)
                     
-                    Image(systemName: selectedTab == currentTab ? "checkmark.circle" : "")
+                    Image(systemName: selectedAppearance == currentTab.tag ? "checkmark.circle" : "")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 50, alignment: .trailing)
@@ -139,13 +140,13 @@ final class SettingsViewModel: ObservableObject {
 
     struct AppearanceButtonView<T: AppearanceProtocol>: View {
         
-        @Binding var selectedTab: T
+        @Binding var selectedAppearance: Int
         let allCases: [T]
         
         var body: some View {
             VStack {
                 ForEach(allCases, id: \.self) { tab in
-                    AppearanceButton(currentTab: tab, selectedTab: $selectedTab)
+                    AppearanceButton(currentTab: tab, selectedAppearance: $selectedAppearance)
             
                 }
                 
@@ -158,6 +159,16 @@ final class SettingsViewModel: ObservableObject {
         
         }
     }
+    
+    
+    struct ScrollOffsetPreferenceKey: PreferenceKey {
+        static var defaultValue: CGPoint = .zero
+        
+        static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
+        }
+    }
+    
+    
 }
 
 

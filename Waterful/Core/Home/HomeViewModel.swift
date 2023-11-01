@@ -76,8 +76,69 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    struct ActionSheetView<Content: View>: View {
+
+        let content: Content
+        let topPadding: CGFloat
+        let fixedHeight: Bool
+        let bgColor: Color
+
+        init(topPadding: CGFloat = 100, fixedHeight: Bool = false, bgColor: Color = .white, @ViewBuilder content: () -> Content) {
+            self.content = content()
+            self.topPadding = topPadding
+            self.fixedHeight = fixedHeight
+            self.bgColor = bgColor
+        }
+
+        struct CustomCorners: Shape {
+            var radius: CGFloat
+            var corners: UIRectCorner
+
+            func path(in rect: CGRect) -> Path {
+                let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                return Path(path.cgPath)
+            }
+        }
+        
+        var body: some View {
+            ZStack {
+                bgColor.clipShape(CustomCorners(radius: 40, corners: [.topLeft, .topRight]))
+                VStack {
+                    Color.gray1
+                        .opacity(0.9)
+                        .frame(width: 30, height: 6)
+                        .clipShape(Capsule())
+                        .padding(.top, 15)
+                        .padding(.bottom, 10)
+
+                    content
+                        .padding(.bottom, 30)
+                        .applyIf(fixedHeight) {
+                            $0.frame(height: UIScreen.main.bounds.height - topPadding)
+                        }
+                        .applyIf(!fixedHeight) {
+                            $0.frame(maxHeight: UIScreen.main.bounds.height - topPadding)
+                        }
+                }
+            }
+            .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+    
+    struct ActionSheetFirst: View {
+        var body: some View {
+            ActionSheetView(bgColor: .appearance) {
+                ScrollView {
+                    
+                }
+            }
+        }
+    }
     
 }
 
 
-
+#Preview {
+    
+    HomeView()
+}

@@ -6,26 +6,28 @@
 //
 
 import SwiftUI
-import SwiftData
+
 
 @main
 struct WaterfulApp: App {
-    
-    @State var selectedAppearance: SettingsViewModel.Appearance = .system
-    
-    let container: ModelContainer = {
-        
-        let schema = Schema([WaterIntake.self])
-        let container =  try! ModelContainer(for: schema, configurations: [])
-        return container
-    }()
+  
+  
+    init() {
+        updateUserInterfaceStyle()
+    }
+   
+  
     
     var body: some Scene {
         WindowGroup {
-            HomeView(selectedAppearance: $selectedAppearance)
-            .preferredColorScheme(selectedAppearance.tag == 0 ? .light : selectedAppearance.tag == 1 ? .dark : nil)
-           
+            
+            HomeView()
+            
+            
+            
         }
-        .modelContainer(container)
+        
     }
+   
+
 }

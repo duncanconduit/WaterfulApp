@@ -13,12 +13,8 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.easyDismiss) var easyDismiss: EasyDismiss
-    @Binding var selectedAppearance: SettingsViewModel.Appearance 
-    
-    @State var  isSelectedL = false
-    @State var isSelectedD = false
-    @State var isSelectedS = false
-    
+    @State var selectedAppearance = UserDefaults.standard.integer(forKey: "appearance")
+    @State private var scrollPosition: CGPoint = .zero
     @StateObject private var viewModel = SettingsViewModel()
 
     
@@ -38,7 +34,7 @@ struct SettingsView: View {
                         .font(.system(.largeTitle, design: .rounded))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(Color("Color1"))
+                        .foregroundStyle(.navTitle)
                         .padding()
                     
                     Button {
@@ -59,11 +55,12 @@ struct SettingsView: View {
                 }
             }
             
-            
-            
+        
+                
             
         ScrollView {
-                
+            
+              
             VStack {
                 
                 
@@ -72,7 +69,7 @@ struct SettingsView: View {
                         .font(.system(.title3, design: .default))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
-                        .foregroundStyle(Color("Color1"))
+                        .foregroundStyle(.navTitle)
                     
                     Text("Customise the appearance of the app.")
                         .font(.system(.body, design: .default))
@@ -81,47 +78,63 @@ struct SettingsView: View {
                 }
                 .padding(.leading, 10)
                 
-                SettingsViewModel.AppearanceButtonView(selectedTab: $selectedAppearance, allCases: SettingsViewModel.Appearance.allCases)
+                SettingsViewModel.AppearanceButtonView(selectedAppearance: $selectedAppearance, allCases: SettingsViewModel.Appearance.allCases)
     
                 }
                 .padding()
                 
+            VStack {
+                
                 VStack {
+                    Text("Notifications")
+                        .font(.system(.title3, design: .rounded))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .bold()
+                        .foregroundStyle(.navTitle)
                     
-                    VStack {
-                        Text("Notifications")
-                            .font(.system(.title3, design: .rounded))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .foregroundStyle(Color("Color1"))
-                        
-                        Text("Customise the notifications of the app")
-                            .font(.system(.body, design: .rounded))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .foregroundStyle(.gray)
+                    Text("Customise the notifications of the app")
+                        .font(.system(.body, design: .rounded))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(.gray)
+                    
+                    Button {
+                        print(scrollPosition.y)
+                    } label: {
+                        Text("test")
                     }
-                    .padding(.leading, 10)
                 }
+                .padding(.leading, 10)
+            }
                 .padding()
                 
                 Spacer(minLength: 200)
-                
+              
+            
+            
+        .background(GeometryReader { geometry in
+                            Color.clear
+                .preference(key: SettingsViewModel.ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
+                        })
+        .onPreferenceChange(SettingsViewModel.ScrollOffsetPreferenceKey.self) { value in
+                            self.scrollPosition = value
+                        }
+    
             }
-           
             
             
             
         }
-        .background(.white)
-       
-        
+        .background(.appearance)
+        .onChange(of: selectedAppearance) {
+            Utilities().overrideDisplayMode()
+        }
     }
-      
+        
 
 }
 
 
 
 #Preview {
-    SettingsView(selectedAppearance: .constant(SettingsViewModel.Appearance.light))
+    SettingsView()
 }

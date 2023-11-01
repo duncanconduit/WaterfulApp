@@ -17,26 +17,20 @@ import SwiftData
 struct HomeView: View {
     
     @Environment(\.modelContext) private var context
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Query(filter: WaterIntake.currentPredicate(),
            sort: \WaterIntake.date
     ) var waterintakes: [WaterIntake]
-    @State  var goal = 2000
-    @State var showingPopup = false
-    @State  var counter: Int = 0
-    @State  var ShowSettings = false
-    @State var intake: Int = 0
-    @State  var isCompleted: Bool = false
-    @State var data: WaterIntake!
-    @State  var ShowCalendar = false
-    @Binding var selectedAppearance: SettingsViewModel.Appearance
-    @StateObject  var viewModel = HomeViewModel()
-    
-    
-    
-    
-    
-    
-    
+    @State private var intake: Int = 300
+    @State private var goal: Int = 2000
+    @State private var showingPopup = false
+    @State private var counter: Int = 0
+    @State private var ShowSettings = false
+    @State private var isCompleted: Bool = false
+    @State private var endButton: Bool = false
+    @State private var data: WaterIntake!
+    @State  private var ShowCalendar = false
+    @StateObject  private var viewModel = HomeViewModel()
     
     
     func greetingLogic() -> String {
@@ -80,7 +74,7 @@ struct HomeView: View {
                             alignment: .leading
                         )
                         .padding(.leading, 20)
-                        .foregroundColor(Color("Color1"))
+                        .foregroundColor(.navTitle)
                 }
                 
                 
@@ -102,7 +96,7 @@ struct HomeView: View {
                             alignment: .leading
                         )
                         .padding(.trailing, 20)
-                        .foregroundColor(Color("Color1"))
+                        .foregroundColor(.navTitle)
                 }
                 
                 
@@ -116,7 +110,7 @@ struct HomeView: View {
                     .foregroundStyle(Color("Grad2"))
                     .padding(.bottom, 5)
                 
-                Text("\(Int(intake))ml of \(Int(goal))ml")
+                Text("\(Int(self.intake))ml of \(Int(self.goal))ml")
                     .font(.system(.title2, design: .rounded))
                     .bold()
                     .foregroundStyle(.gray)
@@ -126,64 +120,83 @@ struct HomeView: View {
                 Spacer()
                     .frame(maxHeight: 60)
                 
-                CircleWaveView(percent: Int(intake/self.goal * 100))
+                CircleWaveView(percent: Int(Double(intake)/Double(goal) * 100))
+                
                 
                 
                 Spacer()
                     .frame(maxHeight: 60)
                 
                 
-                CustomButton(buttonTint: Color("Grad2")) {
-                    HStack(spacing: 10) {
-                        Image(systemName: "plus")
+                Button {
+                    
+                    
+                } label: {
+                    ZStack {
+                        Image(systemName: endButton ? "checkmark.circle.fill" : "plus.circle.fill")
                             .resizable()
                             .scaledToFit()
                             .frame(
-                                width: 40,
-                                height: 40
+                                width: 60,
+                                height: 60,
+                                alignment: .center
                             )
+                            .foregroundStyle(endButton ? .green : .grad2)
+                        
+                        
                     }
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
-                } action: {
-                    intake = intake + 100
-                    data.intake = Double(intake)
-                    context.insert(data)
-                    showingPopup = true
-                    counter += 1
-                    return .success            }
+                    .simultaneousGesture(LongPressGesture().onChanged { _ in
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                       
+                    })
+                    .simultaneousGesture(LongPressGesture().onEnded { _ in
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                        withAnimation(.spring()) {
+                            endButton = true
+                            intake += 100
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            withAnimation(.spring()) {
+                                endButton = false
+                            }
+                        }
+                    })
+                    .simultaneousGesture(TapGesture().onEnded {
+                        
+                    })                    
+                }
                 .tint(.white)
-                .buttonStyle(.opacityLess)
                 .confettiCannon(counter: $counter, num: 50, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
                 Spacer()
                     .frame(maxHeight: 20)
                 Spacer()
                 
             }
-            
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onAppear {
-                intake = Int(waterintakes.last?.intake ?? 0)
-                data = WaterIntake(date: Date(), intake: Double(intake), isCompleted: false)
-            }
-            .popup(isPresented: $showingPopup) { // 3
-                ZStack { // 4
-                    Color.blue.frame(width: 200, height: 100)
-                    Text("Popup!")
-                }
-            } customize: {
-                $0
-                    .type (.toast)
-                    .position(.bottom)
-                    .dragToDismiss(true)
-            }
-            .easyFullScreenCover(isPresented: $ShowSettings) {
-                SettingsView(selectedAppearance: $selectedAppearance)
-            }
+            
+            
             
         }
         
+        .background(.appearance)
+        .easyFullScreenCover(isPresented: $ShowSettings) {
+            SettingsView()
+        }
+        .popup(isPresented: $showingPopup) {
+            HomeViewModel.ActionSheetFirst()
+        } customize: {
+            $0
+                .type(.toast)
+                .position(.bottom)
+                .closeOnTap(false)
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.4))
+        
+      
+        }
+        
     }
+        
     
     
     
@@ -237,11 +250,21 @@ struct HomeView: View {
             GeometryReader { geo in
                 ZStack {
                     HomeViewModel.ShapeElement1()
-                        .stroke(Color.black, lineWidth: 0.7)
+                        .stroke(Color.navTitle, lineWidth: 0.7)
                         .blur(radius: 2)
                         .overlay(
                             Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
-                                .fill(RadialGradient(gradient: Gradient(colors: [Color(.white), Color("Droplet1")]), center: .center, startRadius: 2, endRadius: 250))
+                                .fill(.white)
+                                .clipShape(HomeViewModel.ShapeElement1().scale(1))
+                                .onAppear {
+                                    withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                        self.waveOffset = Angle(degrees: 360)
+                                    }
+                                }
+                        )
+                        .overlay(
+                            Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
+                                .fill(RadialGradient(gradient: Gradient(colors: [Color(.white), Color(.grad2)]), center: .center, startRadius: 2, endRadius: 250))
                                 .clipShape(HomeViewModel.ShapeElement1().scale(1))
                                 .onAppear {
                                     withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
@@ -261,3 +284,6 @@ struct HomeView: View {
 }
 
 
+#Preview {
+    HomeView()
+}
