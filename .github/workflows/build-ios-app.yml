@@ -4,11 +4,11 @@ on:
   # manual trigger but change to any supported event
   # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   workflow_dispatch:
-    branches: [main,working]
+    branches: [main]
 
 jobs:
   build_with_signing:
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       # this was more debug as was curious what came pre-installed
       # GitHub shares this online, e.g. https://github.com/actions/runner-images/blob/macOS-12/20230224.1/images/macos/macos-12-Readme.md
