@@ -6,18 +6,28 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 @main
 struct WaterfulApp: App {
-    
+  
+  
     init() {
-        FirebaseApp.configure()
+        updateUserInterfaceStyle()
     }
+   
+  
+    
     var body: some Scene {
         WindowGroup {
-            SplashView()
-
+            
+            HomeView()
+            
+            
+            
         }
+        
     }
+   
+
 }
