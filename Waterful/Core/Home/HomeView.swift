@@ -83,7 +83,7 @@ struct HomeView: View {
                 Spacer()
                 
                 Button {
-                    withAnimation(.spring()) {
+                    withAnimation() {
                         ShowSettings.toggle()
                     }
                     

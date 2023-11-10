@@ -15,6 +15,7 @@ public protocol AppearanceProtocol: CaseIterable, Hashable, Encodable, Decodable
     var tag: Int { get }
     var imageName: String { get }
     var title: String { get }
+    var subTitle: String { get }
     var foregroundColor: Color { get }
     var backgroundColor: Color { get }
 
@@ -48,6 +49,17 @@ final class SettingsViewModel: ObservableObject {
                 return "Dark"
             case .system:
                 return "System"
+            }
+        }
+        
+        var subTitle: String {
+            switch self {
+            case .light:
+                return "Always uses light appearance."
+            case .dark:
+                return "Always uses the light appearance."
+            case .system:
+                return "Automatic baded on device settings."
             }
         }
 
@@ -92,49 +104,64 @@ final class SettingsViewModel: ObservableObject {
         @Binding var selectedAppearance: Int
 
         var body: some View {
-            Button {
-                selectedAppearance = currentTab.tag
-                UserDefaults.standard.set(currentTab.tag, forKey: "appearance")
-                print(UserDefaults.standard.integer(forKey: "appearance"))
-            } label: {
+          
                 HStack {
+                        
+                        Text("Aa")
+                            .scaledToFit()
+                            .font(.system(size: 30))
+                            .frame(width: 50, height: 50)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(currentTab.foregroundColor)
+                            .background(currentTab.backgroundColor)
+                            .cornerRadius(10)
+                            .padding(10)
+                  
+                    VStack {
+                        
+                        Text(currentTab.title)
+                            .scaledToFit()
+                            .font(.system(.subheadline))
+                            .foregroundStyle(.navTitle)
+                            .frame(minWidth: 150, alignment: .leading)
+                        
+                        Text(currentTab.subTitle)
+                            .scaledToFit()
+                            .font(.system(.caption))
+                            .foregroundStyle(.gray)
+                            .frame(minWidth: 250, alignment: .leading)
+                        
+                        
+                    }
+                    .padding(.horizontal, 10)
+                    .frame(minWidth: 250,alignment: .leading)
+                    .scaledToFit()
                     
-                    Image(systemName: currentTab.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 25, height: 50)
-                        .foregroundColor(currentTab.foregroundColor)
-                        .padding()
                     
                     
-                    Text(currentTab.title)
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                        .foregroundStyle(currentTab.foregroundColor)
-                        .padding()
-                    
-                    Spacer()
-                        .frame(minWidth: 90)
                     
                     Image(systemName: selectedAppearance == currentTab.tag ? "checkmark.circle" : "")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 50, alignment: .trailing)
                         .foregroundColor(currentTab.foregroundColor)
-                        .padding()
+                        .padding(.trailing, 3)
                     
                 }
-                .frame(height: 80)
-                .background(currentTab.backgroundColor)
-                .cornerRadius(20)
+                .frame(height: 65, alignment: .leading)
+                .scaledToFit()
+                .aspectRatio(contentMode: .fit) 
+                .background(.regularMaterial)
+                .cornerRadius(15)
                 .buttonStyle(.plain)
-
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .buttonStyle(.plain)
+                .simultaneousGesture(TapGesture().onEnded {
+                    selectedAppearance = currentTab.tag
+                    UserDefaults.standard.set(currentTab.tag, forKey: "appearance")
+                })
             
             
         }
+        
     }
 
 
@@ -147,15 +174,12 @@ final class SettingsViewModel: ObservableObject {
             VStack {
                 ForEach(allCases, id: \.self) { tab in
                     AppearanceButton(currentTab: tab, selectedAppearance: $selectedAppearance)
-            
+                    
                 }
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
             }
-            .padding()
-            .aspectRatio(contentMode: .fit)
-            .background(.regularMaterial)
-            .cornerRadius(20) /// make the background rounded
-            .frame(maxWidth: .infinity, alignment: .leading)
         
         }
     }
@@ -170,5 +194,6 @@ final class SettingsViewModel: ObservableObject {
     
     
 }
+
 
 

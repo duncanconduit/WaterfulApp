@@ -11,8 +11,6 @@
 		5613193D2AEAD949005432D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5613193C2AEAD949005432D9 /* SettingsView.swift */; };
 		5613193F2AEAFA51005432D9 /* WaterIntake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5613193E2AEAFA51005432D9 /* WaterIntake.swift */; };
 		561B30092A4880ED00494669 /* WaterfulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B30082A4880ED00494669 /* WaterfulApp.swift */; };
-		561B300D2A4880EE00494669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300C2A4880EE00494669 /* Assets.xcassets */; };
-		561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300F2A4880EE00494669 /* Preview Assets.xcassets */; };
 		563C8AAC2AF174AF003A7043 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C8AAB2AF174AF003A7043 /* SettingsViewModel.swift */; };
 		563C8AAF2AF1A6E5003A7043 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C8AAE2AF1A6E5003A7043 /* UserPreferences.swift */; };
 		563C8AB52AF2A75D003A7043 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C8AB42AF2A75D003A7043 /* Utils.swift */; };
@@ -26,6 +24,8 @@
 		56B5B71B2A56FF500047FB4E /* Waterful.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 56B5B70E2A56FF4E0047FB4E /* Waterful.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		56DD305B2AF2D720004E0A4F /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 56DD305A2AF2D720004E0A4F /* PopupView */; };
 		56DD305E2AF2F23B004E0A4F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD305D2AF2F23B004E0A4F /* HistoryView.swift */; };
+		56DD305F2AFE348B004E0A4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300C2A4880EE00494669 /* Assets.xcassets */; };
+		56DD30602AFE3497004E0A4F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 561B300F2A4880EE00494669 /* Preview Assets.xcassets */; };
 		56E14EF52A48B88E00967797 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E14EF42A48B88E00967797 /* HomeView.swift */; };
 		56FA6D772AAF07F400996800 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 56FA6D762AAF07F400996800 /* PopupView */; };
 /* End PBXBuildFile section */
@@ -295,8 +295,6 @@
 			);
 			mainGroup = 561B2FFC2A4880ED00494669;
 			packageReferences = (
-				56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				5664DF0E2A4A31320062FAD2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				561319392AEA7D6E005432D9 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				56DD30592AF2D720004E0A4F /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
@@ -315,8 +313,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				561B30102A4880EE00494669 /* Preview Assets.xcassets in Resources */,
-				561B300D2A4880EE00494669 /* Assets.xcassets in Resources */,
+				56DD30602AFE3497004E0A4F /* Preview Assets.xcassets in Resources */,
+				56DD305F2AFE348B004E0A4F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,28 +675,12 @@
 				minimumVersion = 1.1.0;
 			};
 		};
-		5664DF0E2A4A31320062FAD2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		56DD30592AF2D720004E0A4F /* XCRemoteSwiftPackageReference "PopupView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/PopupView.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.8.2;
-			};
-		};
-		56E14ED92A48834E00967797 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = exactVersion;
-				version = 10.11.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

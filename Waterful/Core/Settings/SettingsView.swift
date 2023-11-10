@@ -19,7 +19,7 @@ struct SettingsView: View {
 
     
     var body: some View {
-       
+        
         VStack {
             VStack {
                 
@@ -55,81 +55,131 @@ struct SettingsView: View {
                 }
             }
             
-        
-                
             
-        ScrollView {
             
-              
-            VStack {
+            
+            ScrollView {
                 
                 
                 VStack {
-                    Text("Appearance")
-                        .font(.system(.title3, design: .default))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .bold()
-                        .foregroundStyle(.navTitle)
                     
-                    Text("Customise the appearance of the app.")
-                        .font(.system(.body, design: .default))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(.gray)
-                }
-                .padding(.leading, 10)
-                
-                SettingsViewModel.AppearanceButtonView(selectedAppearance: $selectedAppearance, allCases: SettingsViewModel.Appearance.allCases)
-    
-                }
-                .padding()
-                
-            VStack {
-                
-                VStack {
-                    Text("Notifications")
-                        .font(.system(.title3, design: .rounded))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .bold()
-                        .foregroundStyle(.navTitle)
                     
-                    Text("Customise the notifications of the app")
-                        .font(.system(.body, design: .rounded))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(.gray)
-                    
-                    Button {
-                        print(scrollPosition.y)
-                    } label: {
-                        Text("test")
+                    VStack {
+                        Text("Appearance")
+                            .font(.system(.title3, design: .default))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .bold()
+                            .foregroundStyle(.navTitle)
+                        
+                        Text("Customise the appearance of the app.")
+                            .font(.system(.body, design: .default))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundStyle(.gray)
                     }
+                    .padding(.leading)
+                    
+                    SettingsViewModel.AppearanceButtonView(selectedAppearance: $selectedAppearance, allCases: SettingsViewModel.Appearance.allCases)
+                    
+                        
+                    
+                        
+                        
+                        
+                    
                 }
-                .padding(.leading, 10)
-            }
                 .padding()
                 
-                Spacer(minLength: 200)
-              
-            
-            
-        .background(GeometryReader { geometry in
-                            Color.clear
-                .preference(key: SettingsViewModel.ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
-                        })
-        .onPreferenceChange(SettingsViewModel.ScrollOffsetPreferenceKey.self) { value in
-                            self.scrollPosition = value
+                VStack {
+                    
+                    VStack {
+                        Text("Notifications")
+                            .font(.system(.title3, design: .rounded))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .bold()
+                            .foregroundStyle(.navTitle)
+                        
+                        Text("Customise the notifications of the app")
+                            .font(.system(.body, design: .rounded))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundStyle(.gray)
+                    }
+                    .padding(.leading, 10)
+                    
+                    .padding()
+                    
+                   
+                    Button {
+                        
+                        print(UserDefaults.standard.integer(forKey: "appearance"))
+                    } label: {
+                        HStack {
+                            
+                            
+                        
+                                
+                                Image(systemName: "")
+                                    .scaledToFit()
+                                    .font(.system(size: 30))
+                                    .frame(width: 50, height: 50)
+                                    .fontWeight(.semibold)
+                                    .cornerRadius(10)
+                                    .padding()
+                          
+                            VStack {
+                                
+                                Text("Notifications")
+                                    .scaledToFit()
+                                    .font(.system(.subheadline))
+                                    .foregroundStyle(.navTitle)
+                                
+                                Text("Enable Notifications")
+                                    .scaledToFit()
+                                    .font(.system(.caption))
+                                    .foregroundStyle(.gray)
+                                
+                                
+                            }
+                            .padding()
+                            .frame(minWidth: 80)
+                            
+                            
+                            Spacer()
+                                .frame(minWidth: 20)
+                            
+                            
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 25, height: 50, alignment: .trailing)
+                                .foregroundColor(.black)
+                                .padding()
+                            
                         }
-    
+                        .frame(height: 60)
+                        .background(.regularMaterial)
+                        .cornerRadius(10)
+                        .buttonStyle(.plain)
+
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .buttonStyle(.plain)
+                    
+                    
+                       
+                    
+                }
+                .padding()
+                Spacer(minLength: 200)
+                
             }
-            
-            
             
         }
-        .background(.appearance)
+        .background(Color("settingsColor"))
         .onChange(of: selectedAppearance) {
             Utilities().overrideDisplayMode()
         }
     }
-        
 
 }
 
