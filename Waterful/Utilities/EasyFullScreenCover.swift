@@ -2,12 +2,13 @@
 //  EasyFullScreenCover.swift
 //  Waterful
 //
-//  Created by Duncan Conduit on 27/10/2023.
+//  Created by Duncan Conduit on 27/07/2023.
 //  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 import SwiftUI
 
+/// A view that presents a full screen cover with an easy dismiss gesture.
 struct EasyFullScreenCover<Content: View>: View {
     @Binding var isPresented: Bool
     @ViewBuilder var content: Content
@@ -23,6 +24,12 @@ struct EasyFullScreenCover<Content: View>: View {
 }
 
 extension View {
+    /// Presents a full screen cover with an easy dismiss gesture.
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the cover.
+    ///   - transition: The transition to use when showing or hiding the cover. Defaults to `.opacity`.
+    ///   - content: A closure returning the content of the cover.
+    /// - Returns: A view that presents a full screen cover with an easy dismiss gesture.
     func easyFullScreenCover<Content>(isPresented: Binding<Bool>, transition: AnyTransition = .opacity, content: @escaping () -> Content) -> some View where Content : View {
         ZStack {
             self
@@ -37,12 +44,17 @@ extension View {
     }
 }
 
+/// A type that represents an easy dismiss gesture.
 struct EasyDismiss {
     private var action: () -> Void
+    
+    /// Calls the dismiss action.
     func callAsFunction() {
         action()
     }
     
+    /// Creates an easy dismiss gesture.
+    /// - Parameter action: The action to perform when dismissing.
     init(action: @escaping () -> Void = { }) {
         self.action = action
     }

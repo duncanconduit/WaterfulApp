@@ -2,13 +2,11 @@
 //  SettingsView.swift
 //  Waterful
 //
-//  Created by Duncan Conduit on 26/10/2023.
+//  Created by Duncan Conduit on 26/06/2023.
 //  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 import SwiftUI
-
-
 
 struct SettingsView: View {
     
@@ -17,7 +15,7 @@ struct SettingsView: View {
     @State private var scrollPosition: CGPoint = .zero
     @StateObject private var viewModel = SettingsViewModel()
 
-    
+    // The body of the view, which contains a VStack with a number of subviews.
     var body: some View {
         
         VStack {
@@ -26,9 +24,8 @@ struct SettingsView: View {
                 Spacer()
                     .frame(maxHeight: 20)
                 
-                
+                // The title of the screen and a button for dismissing the screen.
                 HStack {
-                    
                     
                     Text("Settings")
                         .font(.system(.largeTitle, design: .rounded))
@@ -55,14 +52,11 @@ struct SettingsView: View {
                 }
             }
             
-            
-            
-            
+            // The main content of the screen, which is contained in a ScrollView.
             ScrollView {
                 
-                
+                // A VStack containing a subview for customizing the appearance of the app.
                 VStack {
-                    
                     
                     VStack {
                         Text("Appearance")
@@ -78,17 +72,13 @@ struct SettingsView: View {
                     }
                     .padding(.leading)
                     
+                    // A subview for selecting the appearance of the app.
                     SettingsViewModel.AppearanceButtonView(selectedAppearance: $selectedAppearance, allCases: SettingsViewModel.Appearance.allCases)
-                    
-                        
-                    
-                        
-                        
-                        
                     
                 }
                 .padding()
                 
+                // A VStack containing a subview for customizing the notifications of the app.
                 VStack {
                     
                     VStack {
@@ -105,25 +95,21 @@ struct SettingsView: View {
                     }
                     .padding(.leading, 10)
                     
+                    // A button for enabling notifications.
                     .padding()
-                    
-                   
                     Button {
                         
                         print(UserDefaults.standard.integer(forKey: "appearance"))
                     } label: {
                         HStack {
                             
-                            
-                        
-                                
-                                Image(systemName: "")
-                                    .scaledToFit()
-                                    .font(.system(size: 30))
-                                    .frame(width: 50, height: 50)
-                                    .fontWeight(.semibold)
-                                    .cornerRadius(10)
-                                    .padding()
+                            Image(systemName: "")
+                                .scaledToFit()
+                                .font(.system(size: 30))
+                                .frame(width: 50, height: 50)
+                                .fontWeight(.semibold)
+                                .cornerRadius(10)
+                                .padding()
                           
                             VStack {
                                 
@@ -142,10 +128,8 @@ struct SettingsView: View {
                             .padding()
                             .frame(minWidth: 80)
                             
-                            
                             Spacer()
                                 .frame(minWidth: 20)
-                            
                             
                             Image(systemName: "chevron.right")
                                 .resizable()
@@ -165,9 +149,6 @@ struct SettingsView: View {
                     .padding()
                     .buttonStyle(.plain)
                     
-                    
-                       
-                    
                 }
                 .padding()
                 Spacer(minLength: 200)
@@ -183,8 +164,7 @@ struct SettingsView: View {
 
 }
 
-
-
+// A preview of the SettingsView struct.
 #Preview {
     SettingsView()
 }

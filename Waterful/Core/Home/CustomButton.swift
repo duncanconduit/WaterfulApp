@@ -2,7 +2,7 @@
 //  CustomButton.swift
 //  Waterful
 //
-//  Created by Duncan Conduit on 10/09/2023.
+//  Created by Duncan Conduit on 10/08/2023.
 //  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
@@ -55,8 +55,8 @@ struct CustomButton<ButtonContent: View>: View {
                 .lineLimit(3)
                 .background {
                     GeometryReader {
-                        let size = $0.size // Size of the button
-                        let circleRadius = size.height * 1.5 // Radius of the circle
+                        let size = $0.size /// Size of the button
+                        let circleRadius = size.height * 1.5 /// Radius of the circle
                         
                         Circle()
                             .fill(Color(taskStatus == .idle ? buttonTint : taskStatus == .success ? .green : .red).shadow(.drop(color: .black.opacity(0.15), radius: 80)))
@@ -128,6 +128,3 @@ enum TaskStatus: Equatable {
     case failed(String)
     case success
 }
-
-
-
