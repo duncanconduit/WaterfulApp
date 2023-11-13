@@ -1,13 +1,14 @@
 //
-//  Utils.swift
+//  Utilities.swift
 //  Waterful
 //
-//  Created by Duncan Conduit on 01/11/2023.
+//  Created by Duncan Conduit on 01/08/2023.
 //  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 import SwiftUI
 
+/// An extension for the Color struct that allows initialization with a hex string.
 extension Color {
     init(hex: String) {
         let scanner = Scanner(string: hex)
@@ -22,8 +23,14 @@ extension Color {
     }
 }
 
+/// An extension for the View struct that provides conditional styling and a custom button style.
 extension View {
     
+    /// Applies a given view modifier to the view if a condition is met.
+    /// - Parameters:
+    ///   - condition: A boolean value indicating whether the modifier should be applied.
+    ///   - apply: A closure that takes the view as an argument and returns the modified view.
+    /// - Returns: The original view if the condition is false, otherwise the modified view.
     @ViewBuilder
     func applyIf<T: View>(_ condition: Bool, apply: (Self) -> T) -> some View {
         if condition {
@@ -33,12 +40,19 @@ extension View {
         }
     }
     
+    /// Applies a shadow to the view.
+    /// - Returns: The view with a shadow applied.
     func shadowedStyle() -> some View {
         self
             .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
             .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
     }
     
+    /// Applies a custom button style to the view.
+    /// - Parameters:
+    ///   - foreground: The color of the button's text.
+    ///   - background: The color of the button's background.
+    /// - Returns: The view with the custom button style applied.
     func customButtonStyle(
         foreground: Color = .black,
         background: Color = .white
@@ -52,12 +66,18 @@ extension View {
     }
 
 #if os(iOS)
+    /// Applies a corner radius to the view.
+    /// - Parameters:
+    ///   - radius: The radius of the corners.
+    ///   - corners: The corners to apply the radius to.
+    /// - Returns: The view with the corner radius applied.
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 #endif
 }
 
+/// A private button style used by the customButtonStyle extension.
 private struct ExampleButtonStyle: ButtonStyle {
     let foreground: Color
     let background: Color
@@ -71,6 +91,7 @@ private struct ExampleButtonStyle: ButtonStyle {
 }
 
 #if os(iOS)
+/// A private shape used by the cornerRadius extension.
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
@@ -82,11 +103,15 @@ struct RoundedCorner: Shape {
 }
 #endif
 
+/// A class containing utilities for overriding the display mode.
 class Utilities {
 
+    /// The selected appearance mode.
     var selectedAppearance = UserDefaults.standard.integer(forKey: "appearance")
+    /// The user interface style.
     var userInterfaceStyle: ColorScheme?
 
+    /// Overrides the display mode based on the selected appearance mode.
     func overrideDisplayMode() {
         var userInterfaceStyle: UIUserInterfaceStyle
         print("Selected Appearance: \(selectedAppearance)")
@@ -105,6 +130,7 @@ class Utilities {
     }
 }
 
+/// Updates the user interface style based on the selected appearance mode.
 func updateUserInterfaceStyle() {
         DispatchQueue.main.async {
             var userInterfaceStyle: UIUserInterfaceStyle

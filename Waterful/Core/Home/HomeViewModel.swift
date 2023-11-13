@@ -3,18 +3,21 @@
 //  Waterful
 //
 //  Created by Duncan Conduit on 30/06/2023.
+//  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 
-
+/// The view model for the home screen of the Waterful app.
 final class HomeViewModel: ObservableObject {
     
+    /// The properties of the shape used in the view.
     struct ShapeProperties {
         static let size = CGSize(width: 108.31, height: 150.26)
     }
     
+    /// The first shape element used in the view.
     struct ShapeElement1: Shape {
         
         private let baseSize: CGSize = ShapeProperties.size
@@ -76,6 +79,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    /// The action sheet view used in the home screen.
     struct ActionSheetView<Content: View>: View {
         
         let content: Content
@@ -125,6 +129,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    /// The first action sheet used in the home screen.
     struct ActionSheetFirst: View {
         var body: some View {
             ActionSheetView(bgColor: .appearance) {
@@ -135,7 +140,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    
+    /// The calendar button used in the home screen.
     struct CalendarButton: View {
         let date: Date
         let dateFormatter: DateFormatter

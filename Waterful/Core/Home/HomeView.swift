@@ -3,6 +3,7 @@
 //  Waterful
 //
 //  Created by Duncan Conduit on 25/06/2023.
+//  Copyright © 2023 Duncan Conduit. All rights reserved.
 //
 
 import SwiftUI
@@ -10,29 +11,53 @@ import ConfettiSwiftUI
 import PopupView
 import SwiftData
 
-
-
-
-
+/// The main view of the Waterful app, displaying the user's water intake progress and allowing them to add new water intake entries.
 struct HomeView: View {
     
+    /// The managed object context for the view.
     @Environment(\.modelContext) private var context
+    
+    /// The color scheme for the view.
     @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
+    /// The array of water intake entries.
     @Query(filter: WaterIntake.currentPredicate(),
            sort: \WaterIntake.date
     ) var waterintakes: [WaterIntake]
+    
+    /// The current water intake amount.
     @State private var intake: Int = 300
+    
+    /// The daily water intake goal.
     @State private var goal: Int = 2000
-    @State private var showingPopup = false
-    @State private var counter: Int = 0
+    
+    /// A boolean indicating whether to show the settings view.
     @State private var ShowSettings = false
+    
+    /// A boolean indicating whether to show the history view.
     @State private var ShowCalendar = false
+    
+    /// A boolean indicating whether the daily water intake goal has been reached.
     @State private var isCompleted: Bool = false
+    
+    /// A boolean indicating whether the add water intake button is in the "end" state.
     @State private var endButton: Bool = false
+    
+    /// A boolean indicating whether to show the rich popup view.
+    @State private var showingPopup = false
+    
+    /// An integer  indicating whether to show the confetti animation.
+    @State private var counter = 0
+    
+    /// The current water intake entry.
     @State private var data: WaterIntake!
+    
+    /// The view model for the home view.
     @StateObject  private var viewModel = HomeViewModel()
     
+   
     
+    /// Determines the appropriate greeting text based on the current time of day.
     func greetingLogic() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -56,7 +81,7 @@ struct HomeView: View {
         return greetingText
     }
     
-    
+    /// The body of the home view.
     var body: some View {
         VStack {
             
@@ -78,8 +103,6 @@ struct HomeView: View {
                         
                 }
                 
-                
-                
                 Spacer()
                 
                 Button {
@@ -100,7 +123,6 @@ struct HomeView: View {
                         .foregroundColor(.navTitle)
                 }
                 
-                
             }
             
             VStack {
@@ -116,21 +138,15 @@ struct HomeView: View {
                     .bold()
                     .foregroundStyle(.gray)
                 
-                
-                
                 Spacer()
                     .frame(maxHeight: 60)
                 
                 CircleWaveView(percent: Int(Double(intake)/Double(goal) * 100))
                 
-                
-                
                 Spacer()
                     .frame(maxHeight: 60)
                 
-                
                 Button {
-                    
                     
                 } label: {
                     ZStack {
@@ -143,7 +159,6 @@ struct HomeView: View {
                                 alignment: .center
                             )
                             .foregroundStyle(endButton ? .green : .grad2)
-                        
                         
                     }
                     .simultaneousGesture(LongPressGesture().onChanged { _ in
@@ -175,8 +190,6 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            
-            
         }
         
         .background(.appearance)
@@ -195,25 +208,26 @@ struct HomeView: View {
                 .closeOnTap(false)
                 .closeOnTapOutside(true)
                 .backgroundColor(.black.opacity(0.4))
-        
-      
         }
         
     }
-        
     
-    
-    
+    /// A custom shape used to create the wave effect in the `CircleWaveView`.
     struct Wave: Shape {
         
+        /// The offset of the wave.
         var offset: Angle
+        
+        /// The percentage of the wave.
         var percent: Double
         
+        /// The animatable data for the wave.
         var animatableData: Double {
             get { offset.degrees }
             set { offset = Angle(degrees: newValue) }
         }
         
+        /// The path of the wave.
         func path(in rect: CGRect) -> Path {
             var p = Path()
             
@@ -243,12 +257,16 @@ struct HomeView: View {
         }
     }
     
-    
+    /// A view that displays the user's water intake progress as a circle with a wave effect.
     struct CircleWaveView: View {
         
+        /// The offset of the wave.
         @State private var waveOffset = Angle(degrees: 0)
+        
+        /// The percentage of the wave.
         let percent: Int
         
+        /// The body of the circle wave view.
         var body: some View {
             
             GeometryReader { geo in
